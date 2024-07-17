@@ -12,7 +12,8 @@ import java.util.List;
         "http://s3.ap-southeast-2.amazonaws.com",
         "http://tiantian-li.me.s3-website-ap-southeast-2.amazonaws.com",
         "http://d8b56o91hx9z6.cloudfront.net",
-        "http://d6v8zbfpagpmu.cloudfront.net"
+        "http://d6v8zbfpagpmu.cloudfront.net",
+        "http://*.tiantian-li.me"
 })
 public class ProjectController {
 
