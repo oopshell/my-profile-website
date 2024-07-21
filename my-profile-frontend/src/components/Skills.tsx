@@ -94,12 +94,12 @@ const Skills: React.FC = () => (
     <Heading>Skills</Heading>
     <SkillsContainer>
       <SkillItem><strong>Languages:</strong> Java, JavaScript, TypeScript, Python, R, Solidity, C</SkillItem>
-      <SkillItem><strong>Frontend:</strong> HTML, CSS, React, Next.js, Vue.js, Bootstrap, Vite</SkillItem>
+      <SkillItem><strong>Frontend:</strong> HTML, CSS, React.js, Next.js, Vue.js, Bootstrap, Vite</SkillItem>
       <SkillItem><strong>Backend:</strong> Node.js, Spring Boot, Express.js, GraphQL, Nest.js</SkillItem>
       <SkillItem><strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, QGIS</SkillItem>
       <SkillItem><strong>Tools:</strong> Docker, Git, Postman, Jira, Trello, Confluence, Tableau</SkillItem>
       <SkillItem><strong>Cloud Services:</strong> AWS: RDS, EC2, S3, CloudFront, Route 53</SkillItem>
-      <SkillItem><strong>Other:</strong> REST APIs, Agile, Unit Test, TDD</SkillItem>
+      <SkillItem><strong>Other:</strong> REST APIs, Agile, Unit Test, TDD, BDD</SkillItem>
     </SkillsContainer>
   </ContentContainer>
 );
