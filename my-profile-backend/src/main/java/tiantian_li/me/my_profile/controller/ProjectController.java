@@ -10,7 +10,9 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = {
         "http://s3.ap-southeast-2.amazonaws.com",
+        "https://s3.ap-southeast-2.amazonaws.com",
         "http://tiantian-li.me.s3-website-ap-southeast-2.amazonaws.com",
+        "https://tiantian-li.me.s3-website-ap-southeast-2.amazonaws.com",
         "http://d8b56o91hx9z6.cloudfront.net",
         "http://d6v8zbfpagpmu.cloudfront.net",
         "https://d6v8zbfpagpmu.cloudfront.net",
