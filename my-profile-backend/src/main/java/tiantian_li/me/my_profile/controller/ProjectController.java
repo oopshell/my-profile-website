@@ -8,19 +8,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = {
-        "http://s3.ap-southeast-2.amazonaws.com",
-        "https://s3.ap-southeast-2.amazonaws.com",
-        "http://tiantian-li.me.s3-website-ap-southeast-2.amazonaws.com",
-        "https://tiantian-li.me.s3-website-ap-southeast-2.amazonaws.com",
-        "http://d8b56o91hx9z6.cloudfront.net",
-        "http://d6v8zbfpagpmu.cloudfront.net",
-        "https://d6v8zbfpagpmu.cloudfront.net",
-        "http://tiantian-li.me",
-        "http://www.tiantian-li.me",
-        "https://tiantian-li.me",
-        "https://www.tiantian-li.me"
-})
+//@CrossOrigin(origins = {
+//        "http://s3.ap-southeast-2.amazonaws.com",
+//        "http://tiantian-li.me.s3-website-ap-southeast-2.amazonaws.com",
+//        "http://d6v8zbfpagpmu.cloudfront.net",
+//        "http://tiantian-li.me",
+//        "http://www.tiantian-li.me"
+//})
 public class ProjectController {
 
         @Autowired

@@ -18,7 +18,7 @@ const Portfolio: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     // axios.get(`${apiUrl}/api/v1/project`)
-    axios.get('https://my-profile-website-elb-607651742.ap-southeast-2.elb.amazonaws.com/api/v1/project')
+    axios.get('https://ec2-3-27-120-84.ap-southeast-2.compute.amazonaws.com:8080/api/v1/project')
       .then(response => {
         setProjects(response.data);
         setLoading(false);

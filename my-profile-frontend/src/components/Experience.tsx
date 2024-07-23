@@ -37,8 +37,9 @@ const Experience: React.FC = () => {
     // axios.get(`${apiUrl}/api/v1/experience`)
     // axios.get('http://localhost:8080/api/v1/experience')
     // axios.get('http://ec2-3-27-120-84.ap-southeast-2.compute.amazonaws.com:8080/api/v1/experience')
+    axios.get('https://ec2-3-27-120-84.ap-southeast-2.compute.amazonaws.com:8080/api/v1/experience')
     // axios.get('https://ec2-3-27-120-84.ap-southeast-2.compute.amazonaws.com:8443/api/v1/experience')
-    axios.get('https://my-profile-website-elb-607651742.ap-southeast-2.elb.amazonaws.com/api/v1/experience')
+    // axios.get('https://my-profile-website-elb-607651742.ap-southeast-2.elb.amazonaws.com/api/v1/experience')
       .then(response => {
         setExperiences(response.data);
         setLoading(false);
