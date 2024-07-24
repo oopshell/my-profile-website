@@ -16,3 +16,10 @@ CREATE TABLE project (
      detail TEXT,
      link VARCHAR(255)
 );
+
+DROP TABLE IF EXISTS skill;
+CREATE TABLE skill (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     category VARCHAR(255) NOT NULL,
+     items TEXT
+);
