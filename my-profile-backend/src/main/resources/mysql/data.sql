@@ -20,7 +20,7 @@ VALUES
          "description": "Utilised TypeORM in NestJS for efficient database interaction and schema management, employing PostgreSQL configured with a Docker image and running in a Docker container for high performance, easy deployment, scalability, and robust data integrity."
      },
      {
-         "title": "Authentication \\& Security",
+         "title": "Authentication & Security",
          "description": "Implemented login and password update functionalities using React-TypeScript, NestJS, and GraphQL, integrating JWT for secure session management and bcrypt for password hashing."
      },
      {
@@ -28,7 +28,7 @@ VALUES
          "description": "Implemented custom AuthGuards and strategy configuration in NestJS for integrating Google and Facebook OAuth authentication, using Passport.js for session management."
      },
      {
-         "title": "Testing \\& Validation",
+         "title": "Testing & Validation",
          "description": "Wrote comprehensive unit tests using Jest for React components and NestJS services, ensuring high code coverage and robust error handling, and implemented Joi validation schemas to enforce strong password policies."
      }
  ]');
