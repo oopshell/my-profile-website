@@ -1,5 +1,12 @@
-import React from "react";
-import { ContentContainer, Heading, SkillsContainer, SkillItem } from "../styles/StyledComponents";
+import React, { useState, useEffect} from "react";
+import axios from "axios";
+import {
+  ContentContainer,
+  Heading,
+  SkillsContainer,
+  SkillItem,
+  Loading,
+} from "../styles/StyledComponents";
 
 // const Skills: React.FC = () => {
 //   return (
@@ -89,19 +96,59 @@ import { ContentContainer, Heading, SkillsContainer, SkillItem } from "../styles
 //   );
 // };
 
-const Skills: React.FC = () => (
-  <ContentContainer>
-    <Heading>Skills</Heading>
-    <SkillsContainer>
-      <SkillItem><strong>Languages:</strong> Java, JavaScript, TypeScript, Python, R, Solidity, C</SkillItem>
-      <SkillItem><strong>Frontend:</strong> HTML, CSS, React.js, Next.js, Vue.js, Bootstrap, Vite</SkillItem>
-      <SkillItem><strong>Backend:</strong> Node.js, Spring Boot, Express.js, GraphQL, Nest.js</SkillItem>
-      <SkillItem><strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, QGIS</SkillItem>
-      <SkillItem><strong>Tools:</strong> Docker, Git, Postman, Jira, Trello, Confluence, Tableau</SkillItem>
-      <SkillItem><strong>Cloud Services:</strong> AWS: RDS, EC2, S3, CloudFront, Route 53</SkillItem>
-      <SkillItem><strong>Other:</strong> REST APIs, Agile, Unit Test, TDD, BDD</SkillItem>
-    </SkillsContainer>
-  </ContentContainer>
-);
+
+
+// const Skills: React.FC = () => (
+//   <ContentContainer>
+//     <Heading>Skills</Heading>
+//     <SkillsContainer>
+//       <SkillItem><strong>Languages:</strong> Java, JavaScript, TypeScript, Python, R, Solidity, C</SkillItem>
+//       <SkillItem><strong>Frontend:</strong> HTML, CSS, React.js, Next.js, Vue.js, Bootstrap, Vite</SkillItem>
+//       <SkillItem><strong>Backend:</strong> Node.js, Spring Boot, Express.js, GraphQL, Nest.js</SkillItem>
+//       <SkillItem><strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, QGIS</SkillItem>
+//       <SkillItem><strong>Tools:</strong> Docker, Git, Postman, Jira, Trello, Confluence, Tableau</SkillItem>
+//       <SkillItem><strong>Cloud Services:</strong> AWS: RDS, EC2, S3, CloudFront, Route 53</SkillItem>
+//       <SkillItem><strong>Other:</strong> REST APIs, Agile, Unit Test, TDD, BDD</SkillItem>
+//     </SkillsContainer>
+//   </ContentContainer>
+// );
+
+
+type SkillsData = {
+  id: number;
+  category: string;
+  items: string;
+};
+
+const Skills: React.FC = () => {
+  const [skills, setSkills] = useState<SkillsData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    axios.get('https://api.tiantian-li.me/api/v1/skill')
+      .then(response => {
+        setSkills(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the skills!', error);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <ContentContainer>
+      <Heading>Skills</Heading>
+      { loading ? (
+        <Loading><i><b>Loading...</b></i></Loading>
+      ) : (
+        skills.map(skill => (
+          <SkillsContainer key={skill.id}>
+            <SkillItem><strong>{skill.category}:</strong> {skill.items}</SkillItem>
+          </SkillsContainer>
+        ))
+      )}
+    </ContentContainer>
+  );
+}
 
 export default Skills;

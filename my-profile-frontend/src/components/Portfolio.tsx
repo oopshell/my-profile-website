@@ -29,10 +29,6 @@ const Portfolio: React.FC = () => {
       });
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <ContentContainer>
       <Heading>My Projects</Heading>

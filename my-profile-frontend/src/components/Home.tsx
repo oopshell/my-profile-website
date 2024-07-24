@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentContainer, HomeWrapper, Text } from '../styles/StyledComponents';
+import { ContentContainer, HomeWrapper, HomeHeading, Text } from '../styles/StyledComponents';
 // import About from './About';
 // import Skills from './Skills';
 // import Experience from './Experience';
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   return (
     <ContentContainer>
       <HomeWrapper>
-        <h1>Welcome to my website!</h1>
+        <HomeHeading>Welcome to my website!</HomeHeading>
         <Text>Click the tags in the navigation bar to learn more about me and my journey. Dive into my projects, explore my experiences, and connect with my passions. Happy browsing!</Text>
         {/* <About />
         <Skills />

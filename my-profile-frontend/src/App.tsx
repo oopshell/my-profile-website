@@ -7,25 +7,12 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Awards from './components/Awards';
-// import Certifications from './components/Certifications';
 import Resume from './components/Resume';
 import Portfolio from './components/Portfolio';
-// import Services from './components/Services';
-// import Contact from './components/Contact';
 import Footer from './components/Footer';
 import GlobalStyle from './styles/GlobalStyles';
-import styled from 'styled-components';
+import { AppWrapper, MainContent } from './styles/StyledComponents';
 
-const AppWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  min-width: 100vw;
-`;
-
-const MainContent = styled.main`
-  flex: 1;
-`;
 
 function App() {
   return (
