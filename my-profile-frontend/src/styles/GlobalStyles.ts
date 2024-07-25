@@ -13,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
   }
 
   h1 {
