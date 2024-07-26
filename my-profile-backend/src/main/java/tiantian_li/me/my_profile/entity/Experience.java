@@ -26,6 +26,19 @@ public class Experience {
     @Column(name = "location")
     private String location;
 
+    // Constructors
+    public Experience() {
+    }
+
+    public Experience(Long id, String companyName, String jobTitle, String dateRange, String description, String location) {
+        this.id = id;
+        this.companyName = companyName;
+        this.jobTitle = jobTitle;
+        this.dateRange = dateRange;
+        this.description = description;
+        this.location = location;
+    }
+
     // Getters and setters
     public Long getId() {
         return id;

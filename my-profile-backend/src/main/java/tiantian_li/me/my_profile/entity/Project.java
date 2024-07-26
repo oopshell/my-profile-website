@@ -24,6 +24,17 @@ public class Project {
     @Column(name = "link")
     private String link;
 
+    // Constructors
+    public Project() {
+    }
+
+    public Project(Long id, String name, String description, String detail, String link) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.detail = detail;
+        this.link = link;
+    }
 
     // Getters and setters
     public Long getId() {
