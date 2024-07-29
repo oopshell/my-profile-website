@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 @WebMvcTest(ProjectController.class)
-public class ProjectControllerTest {
+public class ProjectControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
