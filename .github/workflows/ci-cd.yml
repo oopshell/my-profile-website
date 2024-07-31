@@ -90,5 +90,5 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
         aws s3 sync my-profile-frontend/dist/ s3://tiantian-li.me/
-        aws s3 cp frontend/resume-tiantian_li.pdf s3://tiantian-li.me/resume-tiantian_li.pdf
+        aws s3 cp my-profile-frontend/resume-tiantian_li.pdf s3://tiantian-li.me/resume-tiantian_li.pdf
         aws cloudfront create-invalidation --distribution-id EDDRCIACK0MA --paths "/*"
