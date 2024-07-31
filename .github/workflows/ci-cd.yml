@@ -29,7 +29,13 @@ jobs:
         DB_PASSWORD: ${{ secrets.RDS_PASSWORD }}
       run: |
         cd my-profile-backend
-        ./gradlew clean build
+        ./gradlew clean build --warning-mode all
+        ls build/libs
+    
+    - name: Verify Backend Build Output
+      run: |
+        cd my-profile-backend/build/libs
+        ls -al
 
     - name: Run Backend Tests
       env:
@@ -83,8 +89,8 @@ jobs:
         echo "${{ secrets.EC2_KEY }}" > ec2_key.pem
         chmod 400 ec2_key.pem
         ls
-        ls -al my-profile-backend
-        ls -al my-profile-backend/build/libs
+        ls my-profile-backend
+        ls my-profile-backend/build/libs
         scp -o StrictHostKeyChecking=no -i ec2_key.pem my-profile-backend/build/libs/my-profile-0.0.1-SNAPSHOT.jar $EC2_USER@$EC2_HOST:/home/ubuntu/
         ssh -o StrictHostKeyChecking=no -i ec2_key.pem $EC2_USER@$EC2_HOST << 'EOF'
           sudo rm my-profile-backend/my-profile-0.0.1-SNAPSHOT.jar
