@@ -3,33 +3,38 @@ INSERT INTO skill (category, items) VALUES
     ('Frontend', 'HTML, CSS, React.js, Next.js, Vue.js, Bootstrap, Vite'),
     ('Backend', 'Node.js, Spring Boot, Express.js, GraphQL, Nest.js'),
     ('Databases', 'MySQL, PostgreSQL, MongoDB, QGIS, Tableau'),
+    ('Testing', 'Jest, JUnit, TDD, BDD, Unit Test, Integration Test'),
     ('Tools', 'Docker, Git, Postman, Jira, Trello, Confluence, Slack'),
-    ('Cloud Services', 'AWS: RDS, EC2, S3, CloudFront, Route 53'),
-    ('Other', 'REST APIs, Agile, Unit Test, TDD, BDD');
+    ('Cloud Services', 'AWS: RDS, EC2, S3, CloudFront, Route 53, Load Balancer'),
+    ('Other', 'REST APIs, Agile, CI/CD, OAuth, Data Visualisation');
 
 INSERT INTO experience (company_name, job_title, date_range, location, description)
 VALUES
-    ('BeeQuant AI', 'Full Stack Developer', 'Mar 2024 – Present', 'Sydney, NSW, Australia',
+    ('BeeQuant AI', 'Full Stack Developer', 'Mar 2024 – Present', 'Melbourne, VIC, Australia',
      '[
      {
          "title": "Role",
-         "description": "Worked as a full stack developer, contributing to the development of a crypto trading bot platform with a robust and intuitive interface for automated cryptocurrency trading."
+         "description": "Worked as full stack developer, contributing to the development of a crypto trading bot platform with a robust and intuitive interface for automated cryptocurrency trading."
      },
      {
-         "title": "Database Management",
-         "description": "Utilised TypeORM in NestJS for efficient database interaction and schema management, employing PostgreSQL configured with a Docker image and running in a Docker container for high performance, easy deployment, scalability, and robust data integrity."
+         "title": "Frontend Development",
+         "description": "Utilised React and Next.js in TypeScript to build a responsive, user-friendly frontend, enhancing the platform''s performance and user experience."
+     },
+     {
+         "title": "Backend Development",
+         "description": "Developed API services using NestJS and GraphQL to efficiently handle data operations and business logic, ensuring seamless interaction with the PostgreSQL database configured with Docker for high performance and scalability."
      },
      {
          "title": "Authentication & Security",
-         "description": "Implemented login and password update functionalities using React-TypeScript, NestJS, and GraphQL, integrating JWT for secure session management and bcrypt for password hashing."
-     },
-     {
-         "title": "Third-Party Authentication",
-         "description": "Implemented custom AuthGuards and strategy configuration in NestJS for integrating Google and Facebook OAuth authentication, using Passport.js for session management."
+         "description": "Implemented login and password update functionalities with JWT for secure session management and bcrypt for password hashing. Integrated Google and Facebook OAuth authentication using custom AuthGuards, Passport.js, and strategy configuration in NestJS."
      },
      {
          "title": "Testing & Validation",
-         "description": "Wrote comprehensive unit tests using Jest for React components and NestJS services, ensuring high code coverage and robust error handling, and implemented Joi validation schemas to enforce strong password policies."
+         "description": "Wrote unit tests for the frontend using Jest for Test-Driven Development (TDD), and spec tests for the backend using Jest for Behaviour-Driven Development (BDD). Implemented Joi validation schemas to enforce strong password policies."
+     },
+     {
+         "title": "Team Collaboration",
+         "description": "Collaborated closely with business analysis and DevOps teams to align development efforts with business requirements and ensure seamless deployment and scalability of the platform."
      }
  ]');
 
@@ -76,8 +81,16 @@ VALUES
          "description": "Employed MySQL hosted on AWS RDS for database management, ensuring secure and efficient data storage and retrieval."
      },
      {
+         "title": "Testing",
+         "description": "Conducted unit tests and integration tests for the backend using JUnit, ensuring the reliability and robustness of the application."
+     },
+     {
          "title": "Deployment",
          "description": "Ensured reliable online accessibility and scalability by deploying the backend API on an AWS EC2 instance, the database on AWS RDS, and the frontend on AWS S3."
+     },
+     {
+         "title": "CI/CD Pipeline",
+         "description": "Utilised GitHub Actions to implement a CI/CD pipeline, automating the deployment process to continuously update website content."
      },
      {
          "title": "Coding Principles",
