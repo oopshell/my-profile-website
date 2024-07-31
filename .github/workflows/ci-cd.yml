@@ -1,0 +1,99 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Backend setup
+    - name: Set up JDK 22
+      uses: actions/setup-java@v2
+      with:
+        java-version: '22'
+
+    - name: Build Backend
+      env:
+        DB_HOST: ${{ secrets.RDS_HOST }}
+        DB_PORT: ${{ secrets.RDS_PORT }}
+        DB_NAME: ${{ secrets.RDS_DB_NAME }}
+        DB_USER: ${{ secrets.RDS_USERNAME }}
+        DB_PASSWORD: ${{ secrets.RDS_PASSWORD }}
+      run: |
+        cd my-profile-backend
+        ./gradlew clean build
+
+    - name: Run Backend Tests
+      env:
+        DB_HOST: ${{ secrets.RDS_HOST }}
+        DB_PORT: ${{ secrets.RDS_PORT }}
+        DB_NAME: ${{ secrets.RDS_DB_NAME }}
+        DB_USER: ${{ secrets.RDS_USERNAME }}
+        DB_PASSWORD: ${{ secrets.RDS_PASSWORD }}
+      run: |
+        cd my-profile-backend
+        ./gradlew test
+
+    # Frontend setup
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    - name: Install Frontend Dependencies
+      run: |
+        cd my-profile-frontend
+        npm install
+
+    - name: Build Frontend with Vite
+      run: |
+        cd my-profile-frontend
+        npm run build
+
+    - name: Run Frontend Tests
+      run: |
+        cd my-profile-frontend
+        npm run test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy Backend to AWS EC2
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        EC2_HOST: ${{ secrets.EC2_HOST }}
+        EC2_USER: ${{ secrets.EC2_USER }}
+        EC2_KEY: ${{ secrets.EC2_KEY }}
+      run: |
+        echo "${{ secrets.EC2_KEY }}" > ec2_key.pem
+        chmod 400 ec2_key.pem
+        scp -o StrictHostKeyChecking=no -i ec2_key.pem my-profile-backend/build/libs/my-profile-0.0.1-SNAPSHOT.jar $EC2_USER@$EC2_HOST:/home/ubuntu/
+        ssh -o StrictHostKeyChecking=no -i ec2_key.pem $EC2_USER@$EC2_HOST << 'EOF'
+          sudo rm my-profile-backend/my-profile-0.0.1-SNAPSHOT.jar
+          sudo mv my-profile-0.0.1-SNAPSHOT.jar my-profile-backend
+          sudo pm2 restart my-profile-backend
+        EOF
+
+    - name: Deploy Frontend to AWS S3 and CloudFront
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+      run: |
+        aws s3 sync my-profile-frontend/dist/ s3://tiantian-li.me/
+        aws s3 cp frontend/resume-tiantian_li.pdf s3://tiantian-li.me/resume-tiantian_li.pdf
+        aws cloudfront create-invalidation --distribution-id EDDRCIACK0MA --paths "/*"
