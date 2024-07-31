@@ -74,10 +74,21 @@ jobs:
       run: |
         echo "${{ secrets.EC2_KEY }}" > ec2_key.pem
         chmod 400 ec2_key.pem
+        scp -o StrictHostKeyChecking=no -i ec2_key.pem my-profile-backend/build/libs/my-profile-0.0.1-SNAPSHOT.jar $EC2_USER@$EC2_HOST:/home/ubuntu/
         ssh -o StrictHostKeyChecking=no -i ec2_key.pem $EC2_USER@$EC2_HOST << 'EOF'
           ls
-          pm2 list
+          rm my-profile-backend/my-profile-0.0.1-SNAPSHOT.jar
+          mv my-profile-0.0.1-SNAPSHOT.jar my-profile-backend
+          ls
           pm2 restart my-profile-backend
-          pm2 list
         EOF
 
+    - name: Deploy Frontend to AWS S3 and CloudFront
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+      run: |
+        aws s3 sync my-profile-frontend/dist/ s3://tiantian-li.me/
+        aws s3 cp frontend/resume-tiantian_li.pdf s3://tiantian-li.me/resume-tiantian_li.pdf
+        aws cloudfront create-invalidation --distribution-id EDDRCIACK0MA --paths "/*"
