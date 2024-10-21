@@ -125,6 +125,7 @@ const Skills: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     axios.get('https://api.tiantian-li.me/api/v1/skill')
+    // axios.get('https://4b3m5hspfd.execute-api.ap-southeast-2.amazonaws.com/dev/api/v1/skill')
       .then(response => {
         setSkills(response.data);
         setLoading(false);
