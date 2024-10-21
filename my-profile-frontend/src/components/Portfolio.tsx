@@ -19,6 +19,7 @@ const Portfolio: React.FC = () => {
   useEffect(() => {
     // axios.get(`${apiUrl}/api/v1/project`)
     axios.get('https://api.tiantian-li.me/api/v1/project')
+    // axios.get('https://4b3m5hspfd.execute-api.ap-southeast-2.amazonaws.com/dev/api/v1/project')
       .then(response => {
         setProjects(response.data);
         setLoading(false);
