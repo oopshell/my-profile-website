@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19f9fb06-aaa1-4a12-9c2a-b2b05d43d31f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tiantian_li/me/StreamLambdaHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tiantian_li/me/StreamLambdaHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/ExperienceControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/ExperienceControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/ProjectControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/ProjectControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/ProjectControllerUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/ProjectControllerUnitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/SkillControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tiantian_li/me/controller/SkillControllerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="19f9fb06-aaa1-4a12-9c2a-b2b05d43d31f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729471905070</updated>
-      <workItem from="1729471906185" duration="20491000" />
+      <workItem from="1729471906185" duration="21149000" />
     </task>
     <servers />
   </component>
