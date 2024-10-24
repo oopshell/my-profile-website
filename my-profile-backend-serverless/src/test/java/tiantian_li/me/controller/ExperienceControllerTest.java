@@ -1,4 +1,4 @@
-package tiantian_li.me.my_profile.controller;
+package tiantian_li.me.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -16,8 +16,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import tiantian_li.me.my_profile.entity.Experience;
-import tiantian_li.me.my_profile.service.ExperienceService;
+import tiantian_li.me.entity.Experience;
+import tiantian_li.me.service.ExperienceService;
 
 import java.util.Collections;
 import java.util.List;

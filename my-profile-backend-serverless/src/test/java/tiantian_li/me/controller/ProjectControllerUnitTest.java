@@ -1,12 +1,12 @@
-package tiantian_li.me.my_profile.controller;
+package tiantian_li.me.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import tiantian_li.me.my_profile.entity.Project;
-import tiantian_li.me.my_profile.service.ProjectService;
+import tiantian_li.me.entity.Project;
+import tiantian_li.me.service.ProjectService;
 
 import java.util.Collections;
 import java.util.List;
