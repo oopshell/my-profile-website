@@ -1,3 +1,92 @@
+-- Insert skill categories
+INSERT INTO skill_category (category_name) VALUES
+        ('Languages'),
+        ('Frontend'),
+        ('Backend'),
+        ('Databases'),
+        ('Testing'),
+        ('Tools'),
+        ('Cloud Services'),
+        ('Other');
+
+-- Insert skills for each category
+
+-- Languages skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('Java', (SELECT category_id FROM skill_category WHERE category_name = 'Languages')),
+        ('JavaScript', (SELECT category_id FROM skill_category WHERE category_name = 'Languages')),
+        ('TypeScript', (SELECT category_id FROM skill_category WHERE category_name = 'Languages')),
+        ('Python', (SELECT category_id FROM skill_category WHERE category_name = 'Languages')),
+        ('R', (SELECT category_id FROM skill_category WHERE category_name = 'Languages')),
+        ('Solidity', (SELECT category_id FROM skill_category WHERE category_name = 'Languages')),
+        ('C', (SELECT category_id FROM skill_category WHERE category_name = 'Languages'));
+
+-- Frontend skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('HTML5', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend')),
+        ('CSS', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend')),
+        ('SASS', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend')),
+        ('React.js', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend')),
+        ('Next.js', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend')),
+        ('Vue.js', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend')),
+        ('Bootstrap', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend')),
+        ('Vite', (SELECT category_id FROM skill_category WHERE category_name = 'Frontend'));
+
+-- Backend skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('Node.js', (SELECT category_id FROM skill_category WHERE category_name = 'Backend')),
+        ('Spring Boot', (SELECT category_id FROM skill_category WHERE category_name = 'Backend')),
+        ('Express.js', (SELECT category_id FROM skill_category WHERE category_name = 'Backend')),
+        ('GraphQL', (SELECT category_id FROM skill_category WHERE category_name = 'Backend')),
+        ('Nest.js', (SELECT category_id FROM skill_category WHERE category_name = 'Backend'));
+
+-- Databases skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('MySQL', (SELECT category_id FROM skill_category WHERE category_name = 'Databases')),
+        ('PostgreSQL', (SELECT category_id FROM skill_category WHERE category_name = 'Databases')),
+        ('MongoDB', (SELECT category_id FROM skill_category WHERE category_name = 'Databases')),
+        ('QGIS', (SELECT category_id FROM skill_category WHERE category_name = 'Databases')),
+        ('Tableau', (SELECT category_id FROM skill_category WHERE category_name = 'Databases'));
+
+-- Testing skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('Jest', (SELECT category_id FROM skill_category WHERE category_name = 'Testing')),
+        ('JUnit', (SELECT category_id FROM skill_category WHERE category_name = 'Testing')),
+        ('TDD', (SELECT category_id FROM skill_category WHERE category_name = 'Testing')),
+        ('BDD', (SELECT category_id FROM skill_category WHERE category_name = 'Testing')),
+        ('Unit Test', (SELECT category_id FROM skill_category WHERE category_name = 'Testing')),
+        ('Integration Test', (SELECT category_id FROM skill_category WHERE category_name = 'Testing'));
+
+-- Tools skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('Docker', (SELECT category_id FROM skill_category WHERE category_name = 'Tools')),
+        ('Git', (SELECT category_id FROM skill_category WHERE category_name = 'Tools')),
+        ('Postman', (SELECT category_id FROM skill_category WHERE category_name = 'Tools')),
+        ('Jira', (SELECT category_id FROM skill_category WHERE category_name = 'Tools')),
+        ('Trello', (SELECT category_id FROM skill_category WHERE category_name = 'Tools')),
+        ('Confluence', (SELECT category_id FROM skill_category WHERE category_name = 'Tools')),
+        ('Slack', (SELECT category_id FROM skill_category WHERE category_name = 'Tools')),
+        ('Microsoft Teams', (SELECT category_id FROM skill_category WHERE category_name = 'Tools'));
+
+-- Cloud Services skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('AWS: RDS', (SELECT category_id FROM skill_category WHERE category_name = 'Cloud Services')),
+        ('EC2', (SELECT category_id FROM skill_category WHERE category_name = 'Cloud Services')),
+        ('S3', (SELECT category_id FROM skill_category WHERE category_name = 'Cloud Services')),
+        ('CloudFront', (SELECT category_id FROM skill_category WHERE category_name = 'Cloud Services')),
+        ('Route 53', (SELECT category_id FROM skill_category WHERE category_name = 'Cloud Services')),
+        ('Load Balancer', (SELECT category_id FROM skill_category WHERE category_name = 'Cloud Services')),
+        ('Lambda', (SELECT category_id FROM skill_category WHERE category_name = 'Cloud Services'));
+
+-- Other skills
+INSERT INTO skill (skill_name, category_id) VALUES
+        ('REST APIs', (SELECT category_id FROM skill_category WHERE category_name = 'Other')),
+        ('Agile', (SELECT category_id FROM skill_category WHERE category_name = 'Other')),
+        ('CI/CD', (SELECT category_id FROM skill_category WHERE category_name = 'Other')),
+        ('OAuth', (SELECT category_id FROM skill_category WHERE category_name = 'Other')),
+        ('Data Visualisation', (SELECT category_id FROM skill_category WHERE category_name = 'Other')),
+        ('SEO', (SELECT category_id FROM skill_category WHERE category_name = 'Other'));
+
 
 -- Insert experience and project data
 
