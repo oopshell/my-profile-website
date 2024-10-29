@@ -32,9 +32,15 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
 
 ### Environment Variables ###
 .env
+
+### Mac OS ###
+.DS_Store

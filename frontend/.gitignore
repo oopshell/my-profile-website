@@ -1,3 +1,6 @@
+# production
+/build
+
 # Logs
 logs
 *.log
@@ -23,5 +26,20 @@ dist-ssr
 *.sln
 *.sw?
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### VS Code ###
+.vscode/
+
 ### Environment Variables ###
 .env
+
+### Mac OS ###
+.DS_Store

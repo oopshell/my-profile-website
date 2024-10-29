@@ -1,6 +1,7 @@
 .DS_Store
 .env
 /.idea
-/my-profile-backend/.idea
-/my-profile-backend-serverless/.idea
-/my-profile-frontend/.idea
+/backend/.idea
+/backend-serverless/.idea
+/frontend/.idea
+/frontend-nextjs/.idea
