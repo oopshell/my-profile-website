@@ -23,7 +23,7 @@ jobs:
 
     - name: Build Backend
       run: |
-        cd my-profile-backend-serverless
+        cd backend-serverless
         mvn clean package
 
 
@@ -35,17 +35,17 @@ jobs:
 
     - name: Install Frontend Dependencies
       run: |
-        cd my-profile-frontend
+        cd frontend
         npm install
 
     - name: Build Frontend with Vite
       run: |
-        cd my-profile-frontend
+        cd frontend
         npm run build
 
     - name: Run Frontend Tests
       run: |
-        cd my-profile-frontend
+        cd frontend
         npm run test
 
 
@@ -60,7 +60,7 @@ jobs:
 #      run: |
 #        echo "${{ secrets.EC2_KEY }}" > ec2_key.pem
 #        chmod 400 ec2_key.pem
-#        scp -o StrictHostKeyChecking=no -i ec2_key.pem my-profile-backend/build/libs/my-profile-0.0.1-SNAPSHOT.jar $EC2_USER@$EC2_HOST:/home/ubuntu/
+#        scp -o StrictHostKeyChecking=no -i ec2_key.pem backend/build/libs/my-profile-0.0.1-SNAPSHOT.jar $EC2_USER@$EC2_HOST:/home/ubuntu/
 #        ssh -o StrictHostKeyChecking=no -i ec2_key.pem $EC2_USER@$EC2_HOST << 'EOF'
 #          ls
 #          rm my-profile-backend/my-profile-0.0.1-SNAPSHOT.jar
@@ -72,7 +72,7 @@ jobs:
 
 #      - name: Upload maven package to S3
 #        run: |
-#          aws s3 cp target/my-profile-backend-serverless-1.0-TITAN-lambda-package.zip s3://my-profile-backend-serverless/my-profile-backend-serverless-1.0-TITAN-lambda-package.zip
+#          aws s3 cp backend-serverless/target/my-profile-backend-serverless-1.0-TITAN-lambda-package.zip s3://my-profile-backend-serverless/my-profile-backend-serverless-1.0-TITAN-lambda-package.zip
 #        env:
 #          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
 #          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -97,6 +97,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
-        aws s3 sync my-profile-frontend/dist/ s3://tiantian-li.me/
-        aws s3 cp my-profile-frontend/resume-tiantian_li.pdf s3://tiantian-li.me/resume-tiantian_li.pdf
+        aws s3 sync frontend/dist/ s3://tiantian-li.me/
+        aws s3 cp frontend/resume-tiantian_li.pdf s3://tiantian-li.me/resume-tiantian_li.pdf
         aws cloudfront create-invalidation --distribution-id EDDRCIACK0MA --paths "/*"
