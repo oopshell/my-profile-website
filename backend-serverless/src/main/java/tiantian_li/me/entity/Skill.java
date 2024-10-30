@@ -4,44 +4,51 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "skill")
-
 public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "category")
-    private String category;
+    @Column(name = "skill_name", nullable = false)
+    private String skillName;
 
-    @Column(name = "items")
-    private String items;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private SkillCategory category;
 
     // Constructors
     public Skill() {
     }
 
-    public Skill(Long id, String category, String items) {
+    public Skill(Long id, String skillName, SkillCategory category) {
         this.id = id;
+        this.skillName = skillName;
         this.category = category;
-        this.items = items;
     }
 
-    // Getters and setters
+    // Getters and Setters
     public Long getId() {
         return id;
     }
-    public String getCategory() {
-        return category;
-    }
-    public String getItems() {
-        return items;
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCategory(String category) {
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
+    }
+
+    public SkillCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(SkillCategory category) {
         this.category = category;
     }
-    public void setItems(String items) {
-            this.items = items;
-        }
 }
