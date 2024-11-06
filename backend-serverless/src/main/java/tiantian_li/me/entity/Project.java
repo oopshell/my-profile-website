@@ -1,10 +1,10 @@
 package tiantian_li.me.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "project")
-
 public class Project {
 
     @Id
@@ -17,52 +17,90 @@ public class Project {
     @Column(name = "description")
     private String description;
 
-    @Lob
-    @Column(name = "detail", length = 1000)
-    private String detail;
+    @Column(name = "git_url")
+    private String gitUrl;
 
-    @Column(name = "link")
-    private String link;
+    @Column(name = "preview_url")
+    private String previewUrl;
+
+    // One-to-many relationship with ProjectDetail
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    private List<ProjectDetail> details;
+
+    // Many-to-many relationship with ProjectTag through ProjectTagMapping
+    @ManyToMany
+    @JoinTable(
+            name = "project_tag_mapping",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<ProjectTag> tags;
 
     // Constructors
-    public Project() {
-    }
+    public Project() {}
 
-    public Project(Long id, String name, String description, String detail, String link) {
+    public Project(Long id, String name, String description, String gitUrl, String previewUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.detail = detail;
-        this.link = link;
+        this.gitUrl = gitUrl;
+        this.previewUrl = previewUrl;
     }
 
     // Getters and setters
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public String getDetail() {
-        return detail;
-    }
-    public String getLink() {
-        return link;
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setDetail(String detail) {
-        this.detail = detail;
+
+    public String getGitUrl() {
+        return gitUrl;
     }
-    public void setLink(String link) {
-        this.link = link;
+
+    public void setGitUrl(String gitUrl) {
+        this.gitUrl = gitUrl;
+    }
+
+    public String getPreviewUrl() {
+        return previewUrl;
+    }
+
+    public void setPreviewUrl(String previewUrl) {
+        this.previewUrl = previewUrl;
+    }
+
+    public List<ProjectDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<ProjectDetail> details) {
+        this.details = details;
+    }
+
+    public List<ProjectTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<ProjectTag> tags) {
+        this.tags = tags;
     }
 }
