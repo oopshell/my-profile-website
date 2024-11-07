@@ -21,10 +21,10 @@ jobs:
         distribution: 'oracle'
         java-version: '22'
 
-    - name: Build Backend
-      run: |
-        cd backend-serverless
-        mvn clean package
+#    - name: Build Backend
+#      run: |
+#        cd backend-serverless
+#        mvn clean package
 
 
     # Frontend setup
