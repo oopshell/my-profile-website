@@ -7,58 +7,148 @@ import { motion, useInView } from "framer-motion";
 const projectsData = [
   {
     id: 1,
-    title: "React Portfolio Website",
-    description: "Project 1 description",
+    title: "Personal Profile Website",
+    description: "Full-stack personal website using Java Spring Boot, React-TypeScript, and AWS services with CI/CD automation, performance optimization, and secure deployment",
     image: "/images/projects/1.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    tag: ["All", "Web", "Java"],
+    gitUrl: "https://github.com/oopshell/my-profile-website",
+    previewUrl: "https://tiantian-li.me",
   },
   {
     id: 2,
-    title: "Potography Portfolio Website",
-    description: "Project 2 description",
+    title: "Game of Ethics",
+    description: "Full-stack MEVN web app for airline ethics game, developed with Agile methodology, featuring robust login, re-join function, real-time UI enhancements, and client collaboration",
     image: "/images/projects/2.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
+    tag: ["All", "Web", "Java"],
+    gitUrl: "http://d28tzhn3mqh229.cloudfront.net",
     previewUrl: "/",
   },
   {
     id: 3,
-    title: "E-commerce Application",
-    description: "Project 3 description",
+    title: "Bigfoot Sightings in North America",
+    description: "Interactive Shiny app for exploring and analyzing Bigfoot sightings with climate and text insights",
     image: "/images/projects/3.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Data Visualisation"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 4,
-    title: "Food Ordering Application",
-    description: "Project 4 description",
+    title: "Sentiment Classifier",
+    description: "Twitter Sentiment Classifier using ML Algorithms with 72-82% Accuracy",
     image: "/images/projects/4.png",
-    tag: ["All", "Mobile"],
+    tag: ["All", "Machine Learning"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 5,
-    title: "React Firebase Template",
-    description: "Authentication and CRUD operations",
+    title: "COVID19 Rumour Detection",
+    description: "COVID-19 Rumor Detection in Tweets using Machine Learning Models",
     image: "/images/projects/5.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Machine Learning"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 6,
-    title: "Full-stack Roadmap",
-    description: "Project 5 description",
+    title: "Lucky Draw Competition",
+    description: "Java-Based Lucky Draw System for Competitions and Prize Distribution",
     image: "/images/projects/6.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Java"],
     gitUrl: "/",
     previewUrl: "/",
   },
+  {
+    id: 7,
+    title: "FAPS: A fair, autonomous and privacy-preserving scheme for big data exchange based on oblivious transfer, Ether cheque and smart contracts",
+    description: "Autonomous, fair data exchange using Ethereum smart contracts for secure, private, and cost-effective transactions",
+    image: "/images/projects/7.png",
+    tag: ["All", "Research"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 8,
+    title: "A lightweight privacy-preserving scheme using pixel block mixing for facial image classification in deep learning",
+    description: "Privacy-preserving facial classification using pixel block mixing algorithm with robust security and performance",
+    image: "/images/projects/8.png",
+    tag: ["All", "Research", "Machine Learning"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 9,
+    title: "AdvEWM: Watermark-Based Adversarial Example Generation for DNNs",
+    description: "Adversarial image watermarking framework for fooling dnns with high success and efficiency",
+    image: "/images/projects/9.png",
+    tag: ["All", "Research", "Machine Learning"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 10,
+    title: "BABD: A Bitcoin Address Behavior Dataset for Pattern Analysis",
+    description: "Comprehensive Bitcoin transaction dataset creation, subgraph generation, and behavior analysis using machine learning for address classification and feature importance insights",
+    image: "/images/projects/10.png",
+    tag: ["All", "Research", "Machine Learning"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 11,
+    title: "Leveraging Subgraph Structure for Exploration and Analysis of Bitcoin Address",
+    description: "Bitcoin address classification using machine learning and graph neural networks to enhance cryptocurrency security with a 91.35% accuracy",
+    image: "/images/projects/11.png",
+    tag: ["All", "Research", "Machine Learning"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 12,
+    title: "Drone Management Database for Universities",
+    description: "Spatial Database for University Drone Management with CASA Compliance and Real-time Operational Support",
+    image: "/images/projects/12.png",
+    tag: ["All", "GIS"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 13,
+    title: "Visualising Road Safety: Crash Analysis for VicRoads",
+    description: "Interactive Tableau dashboard analyzing Melbourne crash data, providing insights and recommendations for VicRoads to enhance road safety",
+    image: "/images/projects/13.png",
+    tag: ["All", "Data Visualisation"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 14,
+    title: "Explore Melbourne: Interactive Tourist Guide",
+    description: "Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps",
+    image: "/images/projects/14.png",
+    tag: ["All", "Data Visualisation"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  // {
+  //   id: 15,
+  //   title: "disparity",
+  //   description: "",
+  //   image: "/images/projects/15.png",
+  //   tag: ["All", "Computer Vision"],
+  //   gitUrl: "/",
+  //   previewUrl: "/",
+  // },
+  // {
+  //   id: 16,
+  //   title: "Smart Contract Auction System",
+  //   description: "",
+  //   image: "/images/projects/16.png",
+  //   tag: ["All", "Blockchain"],
+  //   gitUrl: "/",
+  //   previewUrl: "/",
+  // },
 ];
 
 const ProjectsSection = () => {
@@ -97,8 +187,33 @@ const ProjectsSection = () => {
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
+          name="Java"
+          isSelected={tag === "Java"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="GIS"
+          isSelected={tag === "GIS"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Data Visualisation"
+          isSelected={tag === "Data Visualisation"}
+        />
+        {/* <ProjectTag
+          onClick={handleTagChange}
+          name="Computer Vision"
+          isSelected={tag === "Computer Vision"}
+        /> */}
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Machine Learning"
+          isSelected={tag === "Machine Learning"}
+        />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="Research"
+          isSelected={tag === "Research"}
         />
       </div>
       <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
