@@ -53,11 +53,6 @@ jobs:
         cd frontend-nextjs
         npm run build
 
-    - name: Export static HTML
-      run: |
-        cd frontend-nextjs
-        npm run export
-
 
 #    - name: Deploy Backend to AWS EC2
 #      env:
