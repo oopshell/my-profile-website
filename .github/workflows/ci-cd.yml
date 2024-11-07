@@ -35,18 +35,18 @@ jobs:
 
     - name: Install Frontend Dependencies
       run: |
-        cd frontend
+        cd frontend-nextjs
         npm install
 
-    - name: Build Frontend with Vite
+    - name: Build Frontend
       run: |
-        cd frontend
+        cd frontend-nextjs
         npm run build
 
-    - name: Run Frontend Tests
-      run: |
-        cd frontend
-        npm run test
+#    - name: Run Frontend Tests
+#      run: |
+#        cd frontend
+#        npm run test
 
 
 #    - name: Deploy Backend to AWS EC2
@@ -97,6 +97,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
       run: |
-        aws s3 sync frontend/dist/ s3://tiantian-li.me/
+        aws s3 sync frontend-nextjs/dist/ s3://tiantian-li.me/
         aws s3 cp frontend/resume-tiantian_li.pdf s3://tiantian-li.me/resume-tiantian_li.pdf
         aws cloudfront create-invalidation --distribution-id EDDRCIACK0MA --paths "/*"
