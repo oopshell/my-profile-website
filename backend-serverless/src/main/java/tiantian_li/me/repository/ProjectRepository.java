@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 import tiantian_li.me.entity.Project;
 
 @Repository
-public interface ProjectRepository extends JpaRepository<Project, Long>{
+public interface ProjectRepository extends JpaRepository<Project, Long> {
+    // Custom query methods can be added here if needed
 }
