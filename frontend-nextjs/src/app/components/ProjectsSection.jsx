@@ -35,7 +35,7 @@ const projectsData = [
   {
     id: 4,
     title: "Sentiment Classifier",
-    description: "Twitter Sentiment Classifier using ML Algorithms with 72-82% Accuracy",
+    description: "Twitter Sentiment Classifier using ML Algorithms",
     image: "/images/projects/4.png",
     tag: ["All", "Machine Learning"],
     gitUrl: "/",
