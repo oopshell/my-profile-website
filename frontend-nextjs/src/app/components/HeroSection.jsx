@@ -24,7 +24,7 @@ const HeroSection = () => {
               sequence={[
                 "Tiantian Li",
                 1000,
-                "FullStack Developer", // "Software Engineer",
+                "FullStack Dev",
                 1000,
                 "Data Scientist",
                 1000,
@@ -35,7 +35,7 @@ const HeroSection = () => {
             />
           </h1>
           <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-            Click the tags in the navigation bar to learn more about me and my journey. Dive into my projects, explore my experiences, and connect with my passions. Happy browsing!
+            Explore my projects, discover my experiences, and connect with my passions. Dive in to learn more about my journey. Happy browsing!
           </p>
           <div>
             <Link
