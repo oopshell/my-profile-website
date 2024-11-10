@@ -11,6 +11,9 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "slug")
+    private String slug;
+
     @Column(name = "name")
     private String name;
 
@@ -39,8 +42,9 @@ public class Project {
     // Constructors
     public Project() {}
 
-    public Project(Long id, String name, String description, String gitUrl, String previewUrl) {
+    public Project(Long id, String slug, String name, String description, String gitUrl, String previewUrl) {
         this.id = id;
+        this.slug = slug;
         this.name = name;
         this.description = description;
         this.gitUrl = gitUrl;
@@ -54,6 +58,14 @@ public class Project {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getName() {
