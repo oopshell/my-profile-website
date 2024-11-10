@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import tiantian_li.me.entity.Project;
 
+import java.util.Optional;
+
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    // Custom query methods can be added here if needed
+    Optional<Project> findBySlug(String slug);
 }
