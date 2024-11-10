@@ -1,6 +1,6 @@
 // this is project detail page of one project. fetch projects data from the server by an ID and display the data. the data contains project name, short description, technology used, and list of details.
 import React from "react";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
