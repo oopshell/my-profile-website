@@ -7,6 +7,7 @@ import { motion, useInView } from "framer-motion";
 const projectsData = [
   {
     id: 1,
+    slug: "my-profile-website",
     title: "Personal Profile Website",
     description: "Full-stack personal website using Java Spring Boot, React-TypeScript, and AWS services with CI/CD automation, performance optimization, and secure deployment",
     image: "/images/projects/1.png",
@@ -16,6 +17,7 @@ const projectsData = [
   },
   {
     id: 2,
+    slug: "game-of-ethics",
     title: "Game of Ethics",
     description: "Full-stack MEVN web app for airline ethics game, developed with Agile methodology, featuring robust login, re-join function, real-time UI enhancements, and client collaboration",
     image: "/images/projects/2.png",
@@ -25,6 +27,7 @@ const projectsData = [
   },
   {
     id: 3,
+    slug: "bigfoot-sightings",
     title: "Bigfoot Sightings in North America",
     description: "Interactive Shiny app for exploring and analyzing Bigfoot sightings with climate and text insights",
     image: "/images/projects/3.png",
@@ -34,6 +37,7 @@ const projectsData = [
   },
   {
     id: 4,
+    slug: "sentiment-classifier",
     title: "Sentiment Classifier",
     description: "Twitter Sentiment Classifier using ML Algorithms",
     image: "/images/projects/4.png",
@@ -43,6 +47,7 @@ const projectsData = [
   },
   {
     id: 5,
+    slug: "covid19-rumour-detection",
     title: "COVID19 Rumour Detection",
     description: "COVID-19 Rumor Detection in Tweets using Machine Learning Models",
     image: "/images/projects/5.png",
@@ -52,6 +57,7 @@ const projectsData = [
   },
   {
     id: 6,
+    slug: "luck-draw-competition",
     title: "Lucky Draw Competition",
     description: "Java-Based Lucky Draw System for Competitions and Prize Distribution",
     image: "/images/projects/6.png",
@@ -61,6 +67,7 @@ const projectsData = [
   },
   {
     id: 7,
+    slug: "fair-autonomous-privacy-preserving-scheme",
     title: "FAPS: A fair, autonomous and privacy-preserving scheme for big data exchange based on oblivious transfer, Ether cheque and smart contracts",
     description: "Autonomous, fair data exchange using Ethereum smart contracts for secure, private, and cost-effective transactions",
     image: "/images/projects/7.png",
@@ -70,6 +77,7 @@ const projectsData = [
   },
   {
     id: 8,
+    slug: "lightweight-privacy-preserving-scheme",
     title: "A lightweight privacy-preserving scheme using pixel block mixing for facial image classification in deep learning",
     description: "Privacy-preserving facial classification using pixel block mixing algorithm with robust security and performance",
     image: "/images/projects/8.png",
@@ -79,6 +87,7 @@ const projectsData = [
   },
   {
     id: 9,
+    slug: "advewm-adversarial-example-generation",
     title: "AdvEWM: Watermark-Based Adversarial Example Generation for DNNs",
     description: "Adversarial image watermarking framework for fooling dnns with high success and efficiency",
     image: "/images/projects/9.png",
@@ -88,6 +97,7 @@ const projectsData = [
   },
   {
     id: 10,
+    slug: "babd-bitcoin-address-behavior-dataset",
     title: "BABD: A Bitcoin Address Behavior Dataset for Pattern Analysis",
     description: "Comprehensive Bitcoin transaction dataset creation, subgraph generation, and behavior analysis using machine learning for address classification and feature importance insights",
     image: "/images/projects/10.png",
@@ -97,6 +107,7 @@ const projectsData = [
   },
   {
     id: 11,
+    slug: "bitcoin-address-subgraph-structure",
     title: "Leveraging Subgraph Structure for Exploration and Analysis of Bitcoin Address",
     description: "Bitcoin address classification using machine learning and graph neural networks to enhance cryptocurrency security with a 91.35% accuracy",
     image: "/images/projects/11.png",
@@ -106,6 +117,7 @@ const projectsData = [
   },
   {
     id: 12,
+    slug: "drone-management-database",
     title: "Drone Management Database for Universities",
     description: "Spatial Database for University Drone Management with CASA Compliance and Real-time Operational Support",
     image: "/images/projects/12.png",
@@ -115,6 +127,7 @@ const projectsData = [
   },
   {
     id: 13,
+    slug: "visualising-road-safety",
     title: "Visualising Road Safety: Crash Analysis for VicRoads",
     description: "Interactive Tableau dashboard analyzing Melbourne crash data, providing insights and recommendations for VicRoads to enhance road safety",
     image: "/images/projects/13.png",
@@ -124,6 +137,7 @@ const projectsData = [
   },
   {
     id: 14,
+    slug: "tourist-guide-melbourne",
     title: "Explore Melbourne: Interactive Tourist Guide",
     description: "Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps",
     image: "/images/projects/14.png",
@@ -133,6 +147,7 @@ const projectsData = [
   },
   // {
   //   id: 15,
+  //   slug: "",
   //   title: "disparity",
   //   description: "",
   //   image: "/images/projects/15.png",
@@ -142,6 +157,7 @@ const projectsData = [
   // },
   // {
   //   id: 16,
+  //   slug: "",
   //   title: "Smart Contract Auction System",
   //   description: "",
   //   image: "/images/projects/16.png",
@@ -227,6 +243,7 @@ const ProjectsSection = () => {
           >
             <ProjectCard
               key={project.id}
+              slug={project.slug}
               title={project.title}
               description={project.description}
               imgUrl={project.image}
