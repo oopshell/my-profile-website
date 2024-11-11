@@ -1,32 +1,55 @@
-// this is project detail page of one project. fetch projects data from the server by an ID and display the data. the data contains project name, short description, technology used, and list of details.
-import React from "react";
-import { CircularProgress } from "@mui/material";
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
-import axios from "axios";
+import React from 'react';
 
-export const ProjectDetail = () => {
-  const { slug } = useParams();
-  const { data: project, isLoading } = useQuery(["project", slug], () =>
-    // fetch(`/api/project/${slug}`).then((res) => res.json())
-    axios.get(`https://api.tiantian-li.me/prod/api/v1/projects/slug/${slug}`)
-      .then(response => response.data)
-  );
-
-  if (isLoading) {
-    return <CircularProgress />;
+async function fetchProjectBySlug(slug) {
+  try {
+    const response = await fetch(`https://api.tiantian-li.me/prod/api/v1/projects/slug/${slug}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch project data");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching project data:", error);
+    return null;
   }
-
-  return (
-    <div>
-      <h1>{project.title}</h1>
-      <p>{project.description}</p>
-      <p>{project.technology}</p>
-      <ul>
-        {project.details.map((detail) => (
-          <li key={detail}>{detail}</li>
-        ))}
-      </ul>
-    </div>
-  );
 }
+
+const ProjectDetail = async ({ params }) => {
+  const { slug } = params;
+
+  try {
+    const project = await fetchProjectBySlug(slug);
+
+    if (!project) {
+      return (
+        <div>
+          <h1>Project Detail</h1>
+          <p>Project data is currently unavailable.</p>
+          <p>Please check back later or contact support for assistance.</p>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <h1>{project.title}</h1>
+        <p>{project.description}</p>
+        <p>{project.technology}</p>
+        <ul>
+          {project.details.map((detail) => (
+            <li key={detail}>{detail}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  } catch (error) {
+    return (
+      <div>
+        <h1>Project Detail</h1>
+        <p>Failed to fetch project data.</p>
+        <p>Please check back later.</p>
+      </div>
+    );
+  }
+};
+
+export default ProjectDetail;
