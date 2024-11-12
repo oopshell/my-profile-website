@@ -47,6 +47,7 @@ CREATE TABLE responsibility (
 DROP TABLE IF EXISTS project;
 CREATE TABLE project (
         project_id INT AUTO_INCREMENT PRIMARY KEY,
+        slug VARCHAR(50) UNIQUE NOT NULL,
         name VARCHAR(255) NOT NULL,
         description VARCHAR(500),
         git_url VARCHAR(255),
