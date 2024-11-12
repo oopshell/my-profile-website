@@ -201,49 +201,61 @@ INSERT INTO responsibility (experience_id, title, description) VALUES
 
 -- Insert into project table
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('Personal Profile Website', 'Full-Stack Web Application', 'https://github.com/oopshell/my-profile-website', 'https://tiantian-li.me');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('my-profile-website', 'Personal Profile Website', 'Full-Stack Web Application', 'https://github.com/oopshell/my-profile-website', 'https://tiantian-li.me');
 SET @project_id_1 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('Game of Ethics', 'Full-Stack Web Application', '', 'http://d28tzhn3mqh229.cloudfront.net');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('game-of-ethics', 'Game of Ethics', 'Full-Stack Web Application', '', 'http://d28tzhn3mqh229.cloudfront.net');
 SET @project_id_2 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('Bigfoot Sightings in North America', 'Shiny Dashboard', 'https://github.com/oopshell/tidytuesday-bigfoot-dashboard-shiny-app', '');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('bigfoot-sightings', 'Bigfoot Sightings in North America', 'Shiny Dashboard', 'https://github.com/oopshell/tidytuesday-bigfoot-dashboard-shiny-app', '');
 SET @project_id_3 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('Sentiment Classifier', 'Machine Learning Project', 'https://github.com/oopshell/ML-basic-KNN-NB-LR-MLP-sentiment-classifier', '');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('sentiment-classifier', 'Sentiment Classifier', 'Machine Learning Project', 'https://github.com/oopshell/ML-basic-KNN-NB-LR-MLP-sentiment-classifier', '');
 SET @project_id_4 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('COVID19 Rumour Detection', 'Machine Learning Project', 'https://github.com/oopshell/COVID19-Rumour-Detection', '');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('covid19-rumour-detection', 'COVID19 Rumour Detection', 'Machine Learning Project', 'https://github.com/oopshell/COVID19-Rumour-Detection', '');
 SET @project_id_5 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('Lucky Draw Competition', 'Java Project', 'https://github.com/oopshell/lucky-draw-competition', '');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('luck-draw-competition', 'Lucky Draw Competition', 'Java Project', 'https://github.com/oopshell/lucky-draw-competition', '');
 SET @project_id_6 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('FAPS: A fair, autonomous and privacy-preserving scheme for big data exchange based on oblivious transfer, Ether cheque and smart contracts', 'Publication', '', 'https://doi.org/10.1016/j.ins.2020.08.116');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('fair-autonomous-privacy-preserving-scheme', 'FAPS: A fair, autonomous and privacy-preserving scheme for big data exchange based on oblivious transfer, Ether cheque and smart contracts', 'Publication', '', 'https://doi.org/10.1016/j.ins.2020.08.116');
 SET @project_id_7 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('A lightweight privacy-preserving scheme using pixel block mixing for facial image classification in deep learning', 'Publication', 'https://github.com/oopshell/Pixel-Blocks-Mixing-For-Image-Privacy-Preservation', 'https://doi.org/10.1016/j.engappai.2023.107180');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('lightweight-privacy-preserving-scheme', 'A lightweight privacy-preserving scheme using pixel block mixing for facial image classification in deep learning', 'Publication', 'https://github.com/oopshell/Pixel-Blocks-Mixing-For-Image-Privacy-Preservation', 'https://doi.org/10.1016/j.engappai.2023.107180');
 SET @project_id_8 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('AdvEWM: Watermark-Based Adversarial Example Generation for DNNs', 'Publication', 'https://github.com/Y-Xiang-hub/AdvEWM', 'https://doi.org/10.1016/j.jisa.2023.103662');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('advewm-adversarial-example-generation', 'AdvEWM: Watermark-Based Adversarial Example Generation for DNNs', 'Publication', 'https://github.com/Y-Xiang-hub/AdvEWM', 'https://doi.org/10.1016/j.jisa.2023.103662');
 SET @project_id_9 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('BABD: A Bitcoin Address Behavior Dataset for Pattern Analysis', 'Publication', '', 'https://doi.org/10.1109/TIFS.2023.3347894');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('babd-bitcoin-address-behavior-dataset', 'BABD: A Bitcoin Address Behavior Dataset for Pattern Analysis', 'Publication', '', 'https://doi.org/10.1109/TIFS.2023.3347894');
 SET @project_id_10 = LAST_INSERT_ID();
 
-INSERT INTO project (name, description, git_url, preview_url) VALUES
-    ('Leveraging Subgraph Structure for Exploration and Analysis of Bitcoin Address', 'Publication', '', 'https://doi.org/10.1109/BigData55660.2022.10020980');
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('bitcoin-address-subgraph-structure', 'Leveraging Subgraph Structure for Exploration and Analysis of Bitcoin Address', 'Publication', '', 'https://doi.org/10.1109/BigData55660.2022.10020980');
 SET @project_id_11 = LAST_INSERT_ID();
+
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('drone-management-database', 'Drone Management Database for Universities', 'Spatial Database for University Drone Management with CASA Compliance and Real-time Operational Support', '', '');
+SET @project_id_12 = LAST_INSERT_ID();
+
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('visualising-road-safety', 'Visualising Road Safety: Crash Analysis for VicRoads', 'Interactive Tableau dashboard analyzing Melbourne crash data, providing insights and recommendations for VicRoads to enhance road safety', '', '');
+SET @project_id_13 = LAST_INSERT_ID();
+
+INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
+    ('tourist-guide-melbourne', 'Explore Melbourne: Interactive Tourist Guide', 'Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps', '', '');
+SET @project_id_14 = LAST_INSERT_ID();
 
 
 -- Insert into project_tag table
@@ -266,6 +278,9 @@ SET @tag_java = LAST_INSERT_ID();
 INSERT INTO project_tag (tag_name) VALUES ('Research');
 SET @tag_research = LAST_INSERT_ID();
 
+INSERT INTO project_tag (tag_name) VALUES ('GIS');
+SET @tag_gis = LAST_INSERT_ID();
+
 
 -- Insert into project_tag_mapping table
 
@@ -280,7 +295,10 @@ INSERT INTO project_tag_mapping (project_id, tag_id) VALUES
     (@project_id_8, @tag_all), (@project_id_8, @tag_research),
     (@project_id_9, @tag_all), (@project_id_9, @tag_research),
     (@project_id_10, @tag_all), (@project_id_10, @tag_research),
-    (@project_id_11, @tag_all), (@project_id_11, @tag_research);
+    (@project_id_11, @tag_all), (@project_id_11, @tag_research),
+    (@project_id_12, @tag_all), (@project_id_12, @tag_gis),
+    (@project_id_13, @tag_all), (@project_id_13, @tag_data_visualisation),
+    (@project_id_14, @tag_all), (@project_id_14, @tag_data_visualisation);
 
 
 -- Insert into project_detail table
@@ -395,3 +413,33 @@ INSERT INTO project_detail (project_id, title, description) VALUES
 (@project_id_11, 'Model Development', 'Trained a graph neural network (GNN) model as a graph-level classifier for Bitcoin addresses'),
 (@project_id_11, 'Performance', 'Achieved a best f1-score of 91.35%, demonstrating the effectiveness of the dataset and the methods used'),
 (@project_id_11, 'Empirical Insights', 'Conducted an in-depth empirical analysis that combined subgraph structures with the definitions of each category of Bitcoin addresses');
+
+-- Project Details for "Drone Management Database for Universities"
+INSERT INTO project_detail (project_id, title, description) VALUES
+(@project_id_12, 'Project Overview', 'Developed a spatial database for managing drones in universities, ensuring compliance with CASA regulations and providing real-time operational support'),
+(@project_id_12, 'Technologies Used', 'MySQL, QGIS, CASA regulations'),
+(@project_id_12, 'Database Design', 'Designed a spatial database to store drone flight data, including flight paths, altitudes, and flight durations'),
+(@project_id_12, 'Regulatory Compliance', 'Ensured compliance with CASA regulations by storing drone registration details, pilot certifications, and flight logs'),
+(@project_id_12, 'Real-Time Monitoring', 'Implemented a real-time monitoring system to track drone locations, flight paths, and battery levels, enabling operational support and emergency response'),
+(@project_id_12, 'User Interface', 'Developed a user-friendly interface using QGIS to visualise drone flight data, monitor airspace usage, and plan flight routes'),
+(@project_id_12, 'Operational Efficiency', 'Optimised drone management processes by automating flight log generation, airspace monitoring, and pilot certification tracking');
+
+-- Project Details for "Visualising Road Safety: Crash Analysis for VicRoads"
+INSERT INTO project_detail (project_id, title, description) VALUES
+(@project_id_13, 'Project Overview', 'Developed an interactive Tableau dashboard to analyse Melbourne crash data, providing insights and recommendations for VicRoads to enhance road safety'),
+(@project_id_13, 'Technologies Used', 'Tableau, Python, Pandas'),
+(@project_id_13, 'Data Analysis', 'Analysed crash data from VicRoads to identify trends, patterns, and high-risk areas'),
+(@project_id_13, 'Interactive Dashboard', 'Created an interactive Tableau dashboard with filters, maps, and charts to visualise crash data and explore insights'),
+(@project_id_13, 'Key Insights', 'Identified common crash causes, high-risk locations, and peak crash times to inform road safety strategies'),
+(@project_id_13, 'Recommendations', 'Provided recommendations to VicRoads for improving road safety, including targeted awareness campaigns, infrastructure upgrades, and traffic management strategies'),
+(@project_id_13, 'Data Processing', 'Cleaned and processed raw crash data using Python and Pandas to prepare it for Tableau visualisation');
+
+-- Project Details for "Explore Melbourne: Interactive Tourist Guide"
+INSERT INTO project_detail (project_id, title, description) VALUES
+(@project_id_14, 'Project Overview', 'Developed an interactive trip website for Melbourne tourists, providing easy access to attractions, weather, transport options, and city maps'),
+(@project_id_14, 'Technologies Used', 'HTML, CSS, JavaScript, Bootstrap, Leaflet.js'),
+(@project_id_14, 'User-Friendly Interface', 'Designed a user-friendly interface with interactive maps, weather forecasts, and transport information to enhance the tourist experience'),
+(@project_id_14, 'Attraction Information', 'Provided detailed information on popular attractions, including opening hours, ticket prices, and visitor reviews'),
+(@project_id_14, 'Weather Forecast', 'Integrated real-time weather data to help tourists plan their trips and activities accordingly'),
+(@project_id_14, 'Transport Options', 'Displayed public transport routes, schedules, and fares to assist tourists in navigating the city efficiently'),
+(@project_id_14, 'Responsive Design', 'Ensured the website is responsive and accessible on various devices, including desktops, tablets, and smartphones');
