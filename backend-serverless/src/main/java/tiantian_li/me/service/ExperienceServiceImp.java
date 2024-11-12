@@ -1,58 +1,70 @@
 package tiantian_li.me.service;
 
+import tiantian_li.me.entity.Company;
 import tiantian_li.me.entity.Experience;
+import tiantian_li.me.entity.Responsibility;
+import tiantian_li.me.repository.CompanyRepository;
 import tiantian_li.me.repository.ExperienceRepository;
+import tiantian_li.me.repository.ResponsibilityRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class ExperienceServiceImp implements ExperienceService{
+public class ExperienceServiceImp implements ExperienceService {
 
     @Autowired
     private ExperienceRepository experienceRepository;
 
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    @Autowired
+    private ResponsibilityRepository responsibilityRepository;
+
     @Override
     public Experience saveExperience(Experience experience) {
+        // Ensure Company exists or associate an existing Company with Experience
+        if (experience.getCompany() != null) {
+            Company company = companyRepository.findById(experience.getCompany().getCompanyId())
+                    .orElseGet(() -> companyRepository.save(experience.getCompany()));
+            experience.setCompany(company);
+        }
         return experienceRepository.save(experience);
     }
 
     @Override
     public List<Experience> fetchAllExperiences() {
-        List<Experience> allExperiences = experienceRepository.findAll();
-        return allExperiences;
+        return experienceRepository.findAll();
     }
 
     @Override
     public Experience getExperienceById(Long id) {
-        Optional<Experience> experience = experienceRepository.findById(id);
-        if (experience.isPresent()) {
-            return experience.get();
-        }
-        return null;
+        return experienceRepository.findById(id).orElse(null);
     }
 
     @Override
     public Experience updateExperienceById(Long id, Experience experienceUpdate) {
-        Optional<Experience> experience = experienceRepository.findById(id);
-        if (experience.isPresent()) {
-            Experience originalExperience = experience.get();
-            if (Objects.nonNull(experienceUpdate.getCompanyName()) && !"".equalsIgnoreCase(experienceUpdate.getCompanyName())) {
-                originalExperience.setCompanyName(experienceUpdate.getCompanyName());
+        Optional<Experience> experienceOpt = experienceRepository.findById(id);
+        if (experienceOpt.isPresent()) {
+            Experience originalExperience = experienceOpt.get();
+            if (experienceUpdate.getCompany() != null) {
+                Company company = companyRepository.findById(experienceUpdate.getCompany().getCompanyId())
+                        .orElseGet(() -> companyRepository.save(experienceUpdate.getCompany()));
+                originalExperience.setCompany(company);
             }
-            if (Objects.nonNull(experienceUpdate.getJobTitle()) && !"".equalsIgnoreCase(experienceUpdate.getJobTitle())) {
-                originalExperience.setJobTitle(experienceUpdate.getJobTitle());
+            if (Objects.nonNull(experienceUpdate.getPosition())) {
+                originalExperience.setPosition(experienceUpdate.getPosition());
             }
-            if (Objects.nonNull(experienceUpdate.getDateRange()) && !"".equalsIgnoreCase(experienceUpdate.getDateRange())) {
-                originalExperience.setDateRange(experienceUpdate.getDateRange());
+            if (Objects.nonNull(experienceUpdate.getStartDate())) {
+                originalExperience.setStartDate(experienceUpdate.getStartDate());
             }
-            if (Objects.nonNull(experienceUpdate.getDescription()) && !"".equalsIgnoreCase(experienceUpdate.getDescription())) {
-                originalExperience.setDescription(experienceUpdate.getDescription());
-            }
-            if (Objects.nonNull(experienceUpdate.getLocation()) && !"".equalsIgnoreCase(experienceUpdate.getLocation())) {
-                originalExperience.setLocation(experienceUpdate.getLocation());
+            if (Objects.nonNull(experienceUpdate.getEndDate())) {
+                originalExperience.setEndDate(experienceUpdate.getEndDate());
             }
             return experienceRepository.save(originalExperience);
         }
@@ -66,5 +78,26 @@ public class ExperienceServiceImp implements ExperienceService{
             return "Experience deleted successfully";
         }
         return "No such experience in the database";
+    }
+
+    @Override
+    public Company saveCompany(Company company) {
+        return companyRepository.save(company);
+    }
+
+    @Override
+    public Responsibility addResponsibilityToExperience(Long experienceId, Responsibility responsibility) {
+        Optional<Experience> experienceOpt = experienceRepository.findById(experienceId);
+        if (experienceOpt.isPresent()) {
+            responsibility.setExperience(experienceOpt.get());
+            return responsibilityRepository.save(responsibility);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Responsibility> fetchResponsibilitiesByExperienceId(Long experienceId) {
+        Optional<Experience> experienceOpt = experienceRepository.findById(experienceId);
+        return experienceOpt.map(Experience::getResponsibilities).orElse(null);
     }
 }
