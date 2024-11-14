@@ -22,8 +22,8 @@ const projectsData = [
     description: "Full-stack MEVN web app for airline ethics game, developed with Agile methodology, featuring robust login, re-join function, real-time UI enhancements, and client collaboration",
     image: "/images/projects/2.png",
     tag: ["All", "Web", "Java"],
-    gitUrl: "http://d28tzhn3mqh229.cloudfront.net",
-    previewUrl: "/",
+    gitUrl: "/",
+    previewUrl: "https://d28tzhn3mqh229.cloudfront.net",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const projectsData = [
     description: "Interactive Shiny app for exploring and analyzing Bigfoot sightings with climate and text insights",
     image: "/images/projects/3.png",
     tag: ["All", "Data Visualisation"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/oopshell/tidytuesday-bigfoot-dashboard-shiny-app",
     previewUrl: "/",
   },
   {
@@ -42,7 +42,7 @@ const projectsData = [
     description: "Twitter Sentiment Classifier using ML Algorithms",
     image: "/images/projects/4.png",
     tag: ["All", "Machine Learning"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/oopshell/ML-basic-KNN-NB-LR-MLP-sentiment-classifier",
     previewUrl: "/",
   },
   {
@@ -52,7 +52,7 @@ const projectsData = [
     description: "COVID-19 Rumor Detection in Tweets using Machine Learning Models",
     image: "/images/projects/5.png",
     tag: ["All", "Machine Learning"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/oopshell/COVID19-Rumour-Detection",
     previewUrl: "/",
   },
   {
@@ -62,7 +62,7 @@ const projectsData = [
     description: "Java-Based Lucky Draw System for Competitions and Prize Distribution",
     image: "/images/projects/6.png",
     tag: ["All", "Java"],
-    gitUrl: "/",
+    gitUrl: "https://github.com/oopshell/lucky-draw-competition",
     previewUrl: "/",
   },
   {
@@ -73,7 +73,7 @@ const projectsData = [
     image: "/images/projects/7.png",
     tag: ["All", "Research"],
     gitUrl: "/",
-    previewUrl: "/",
+    previewUrl: "https://doi.org/10.1016/j.ins.2020.08.116",
   },
   {
     id: 8,
@@ -82,8 +82,8 @@ const projectsData = [
     description: "Privacy-preserving facial classification using pixel block mixing algorithm with robust security and performance",
     image: "/images/projects/8.png",
     tag: ["All", "Research", "Machine Learning"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/oopshell/Pixel-Blocks-Mixing-For-Image-Privacy-Preservation",
+    previewUrl: "https://doi.org/10.1016/j.engappai.2023.107180",
   },
   {
     id: 9,
@@ -92,8 +92,8 @@ const projectsData = [
     description: "Adversarial image watermarking framework for fooling dnns with high success and efficiency",
     image: "/images/projects/9.png",
     tag: ["All", "Research", "Machine Learning"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/Y-Xiang-hub/AdvEWM",
+    previewUrl: "https://doi.org/10.1016/j.jisa.2023.103662",
   },
   {
     id: 10,
@@ -103,7 +103,7 @@ const projectsData = [
     image: "/images/projects/10.png",
     tag: ["All", "Research", "Machine Learning"],
     gitUrl: "/",
-    previewUrl: "/",
+    previewUrl: "https://doi.org/10.1109/TIFS.2023.3347894",
   },
   {
     id: 11,
@@ -113,7 +113,7 @@ const projectsData = [
     image: "/images/projects/11.png",
     tag: ["All", "Research", "Machine Learning"],
     gitUrl: "/",
-    previewUrl: "/",
+    previewUrl: "https://doi.org/10.1109/BigData55660.2022.10020980",
   },
   {
     id: 12,
@@ -142,8 +142,8 @@ const projectsData = [
     description: "Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps",
     image: "/images/projects/14.png",
     tag: ["All", "Data Visualisation"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/oopshell/tourist-guide-melbourne",
+    previewUrl: "http://tourist-guide-melbourne.s3-website-ap-southeast-2.amazonaws.com",
   },
   // {
   //   id: 15,
