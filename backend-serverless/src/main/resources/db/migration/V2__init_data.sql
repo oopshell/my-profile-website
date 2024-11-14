@@ -104,6 +104,7 @@ INSERT INTO skill (skill_name, category_id) VALUES
 -- Insert experience data
 
 -- Insert into company table
+
 INSERT INTO company (company_name, location) VALUES
     ('BeeQuant AI', 'Melbourne, VIC');
 SET @beequant_id = LAST_INSERT_ID();
@@ -116,18 +117,21 @@ INSERT INTO company (company_name, location) VALUES
     ('China University of Geosciences', 'Wuhan, China');
 SET @geosciences_id = LAST_INSERT_ID();
 
--- Insert into work_experience table, referencing company_id dynamically
-INSERT INTO work_experience (company_id, position, start_date, end_date) VALUES
+-- Insert into experience table, referencing company_id dynamically
+
+INSERT INTO experience (company_id, position, start_date, end_date) VALUES
     (@beequant_id, 'Full Stack Developer', '2024-03-01', '2024-07-01');
 SET @beequant_experience_id = LAST_INSERT_ID();
 
-INSERT INTO work_experience (company_id, position, start_date, end_date) VALUES
+INSERT INTO experience (company_id, position, start_date, end_date) VALUES
     (@dunnhumby_id, 'Applied Data Scientist Intern', '2022-01-01', '2022-04-01');
 SET @dunnhumby_experience_id = LAST_INSERT_ID();
 
-INSERT INTO work_experience (company_id, position, start_date, end_date) VALUES
+INSERT INTO experience (company_id, position, start_date, end_date) VALUES
     (@geosciences_id, 'Research Assistant', '2020-06-01', '2021-02-01');
 SET @geosciences_experience_id = LAST_INSERT_ID();
+
+-- Insert into responsibility table, referencing experience_id
 
 -- Insert responsibilities for BeeQuant AI
 INSERT INTO responsibility (experience_id, title, description) VALUES
@@ -162,7 +166,7 @@ INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
 SET @project_id_1 = LAST_INSERT_ID();
 
 INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
-    ('game-of-ethics', 'Game of Ethics', 'Full-Stack Web Application', '', 'http://d28tzhn3mqh229.cloudfront.net');
+    ('game-of-ethics', 'Game of Ethics', 'Full-Stack Web Application', '', 'https://d28tzhn3mqh229.cloudfront.net');
 SET @project_id_2 = LAST_INSERT_ID();
 
 INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
@@ -210,7 +214,7 @@ INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
 SET @project_id_13 = LAST_INSERT_ID();
 
 INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
-    ('tourist-guide-melbourne', 'Explore Melbourne: Interactive Tourist Guide', 'Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps', '', '');
+    ('tourist-guide-melbourne', 'Explore Melbourne: Interactive Tourist Guide', 'Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps', 'https://github.com/oopshell/tourist-guide-melbourne', 'http://tourist-guide-melbourne.s3-website-ap-southeast-2.amazonaws.com');
 SET @project_id_14 = LAST_INSERT_ID();
 
 

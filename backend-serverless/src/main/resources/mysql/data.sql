@@ -166,7 +166,7 @@ INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
 SET @project_id_1 = LAST_INSERT_ID();
 
 INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
-    ('game-of-ethics', 'Game of Ethics', 'Full-Stack Web Application', '', 'http://d28tzhn3mqh229.cloudfront.net');
+    ('game-of-ethics', 'Game of Ethics', 'Full-Stack Web Application', '', 'https://d28tzhn3mqh229.cloudfront.net');
 SET @project_id_2 = LAST_INSERT_ID();
 
 INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
@@ -214,7 +214,7 @@ INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
 SET @project_id_13 = LAST_INSERT_ID();
 
 INSERT INTO project (slug, name, description, git_url, preview_url) VALUES
-    ('tourist-guide-melbourne', 'Explore Melbourne: Interactive Tourist Guide', 'Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps', '', '');
+    ('tourist-guide-melbourne', 'Explore Melbourne: Interactive Tourist Guide', 'Interactive trip website for Melbourne tourists provides easy access to attractions, weather, transport options, and city maps', 'https://github.com/oopshell/tourist-guide-melbourne', 'http://tourist-guide-melbourne.s3-website-ap-southeast-2.amazonaws.com');
 SET @project_id_14 = LAST_INSERT_ID();
 
 
