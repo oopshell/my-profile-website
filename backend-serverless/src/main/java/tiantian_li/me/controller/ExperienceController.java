@@ -1,47 +1,50 @@
 package tiantian_li.me.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tiantian_li.me.entity.Experience;
 import tiantian_li.me.service.ExperienceService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
-//@CrossOrigin(origins = {
-//        "http://s3.ap-southeast-2.amazonaws.com",
-//        "http://tiantian-li.me.s3-website-ap-southeast-2.amazonaws.com",
-//        "http://d6v8zbfpagpmu.cloudfront.net",
-//        "http://tiantian-li.me",
-//        "http://www.tiantian-li.me"
-//})
+@RequestMapping("/api/v1/experience")
 public class ExperienceController {
+    private  final ExperienceService experienceService;
 
-        @Autowired
-        private ExperienceService experienceService;
+    @Autowired
+    public ExperienceController(ExperienceService experienceService) {
+        this.experienceService = experienceService;
+    }
 
-        @PostMapping("/experience")
-        public Experience saveExperience(@RequestBody Experience experience) {
-            return experienceService.saveExperience(experience);
-        }
+    @PostMapping
+    public ResponseEntity<Experience> saveExperience(@RequestBody Experience experience) {
+        Experience savedExperience = experienceService.saveExperience(experience);
+        return new ResponseEntity<>(savedExperience, HttpStatus.CREATED);
+    }
 
-        @GetMapping("/experience")
-        public List<Experience> getAllExperiences() {
-            return experienceService.fetchAllExperiences();
-        }
+    @GetMapping
+    public ResponseEntity<List<Experience>> getAllExperiences() {
+        List<Experience> experiences = experienceService.fetchAllExperiences();
+        return ResponseEntity.ok(experiences);
+    }
 
-        @GetMapping("/experience/{id}")
-        public Experience getExperienceById(@PathVariable("id") Long id) {
-            return experienceService.getExperienceById(id);
-        }
+    @GetMapping("/{id}")
+    public ResponseEntity<Experience> getExperienceById(@PathVariable Long id) {
+        Experience experience = experienceService.findExperienceById(id);
+        return experience != null ? ResponseEntity.ok(experience) : ResponseEntity.notFound().build();
+    }
 
-        @PutMapping("/experience/{id}")
-        public Experience updateExperience(@PathVariable("id") Long id, @RequestBody Experience experience) {
-            return experienceService.updateExperienceById(id, experience);
-        }
+    @PutMapping("/{id}")
+    public ResponseEntity<Experience> updateExperienceById(@PathVariable Long id, @RequestBody Experience experience) {
+        Experience updatedExperience = experienceService.updateExperienceById(id, experience);
+        return ResponseEntity.ok(updatedExperience);
+    }
 
-        @DeleteMapping("/experience/{id}")
-        public String deleteExperience(@PathVariable("id") Long id) {
-            return experienceService.deleteExperienceById(id);
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteExperienceById(@PathVariable Long id) {
+        String message = experienceService.deleteExperienceById(id);
+        return ResponseEntity.ok(message);
+    }
 }
