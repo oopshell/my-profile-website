@@ -12,7 +12,7 @@ public interface ExperienceService {
 
         List<Experience> fetchAllExperiences();
 
-        Experience getExperienceById(Long id);
+        Experience findExperienceById(Long id);
 
         Experience updateExperienceById(Long id, Experience experience);
 
@@ -22,5 +22,5 @@ public interface ExperienceService {
 
         Responsibility addResponsibilityToExperience(Long experienceId, Responsibility responsibility);
 
-        List<Responsibility> fetchResponsibilitiesByExperienceId(Long experienceId);
+        List<Responsibility> findResponsibilitiesByExperienceId(Long experienceId);
 }
