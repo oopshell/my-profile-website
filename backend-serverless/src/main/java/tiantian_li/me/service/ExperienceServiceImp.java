@@ -17,14 +17,16 @@ import java.util.Optional;
 @Service
 public class ExperienceServiceImp implements ExperienceService {
 
-    @Autowired
-    private ExperienceRepository experienceRepository;
+    private final ExperienceRepository experienceRepository;
+    private final CompanyRepository companyRepository;
+    private final ResponsibilityRepository responsibilityRepository;
 
     @Autowired
-    private CompanyRepository companyRepository;
-
-    @Autowired
-    private ResponsibilityRepository responsibilityRepository;
+    public ExperienceServiceImp(ExperienceRepository experienceRepository, CompanyRepository companyRepository, ResponsibilityRepository responsibilityRepository) {
+        this.experienceRepository = experienceRepository;
+        this.companyRepository = companyRepository;
+        this.responsibilityRepository = responsibilityRepository;
+    }
 
     @Override
     public Experience saveExperience(Experience experience) {
@@ -43,7 +45,7 @@ public class ExperienceServiceImp implements ExperienceService {
     }
 
     @Override
-    public Experience getExperienceById(Long id) {
+    public Experience findExperienceById(Long id) {
         return experienceRepository.findById(id).orElse(null);
     }
 
@@ -96,8 +98,7 @@ public class ExperienceServiceImp implements ExperienceService {
     }
 
     @Override
-    public List<Responsibility> fetchResponsibilitiesByExperienceId(Long experienceId) {
-        Optional<Experience> experienceOpt = experienceRepository.findById(experienceId);
-        return experienceOpt.map(Experience::getResponsibilities).orElse(null);
+    public List<Responsibility> findResponsibilitiesByExperienceId(Long experienceId) {
+        return responsibilityRepository.findResponsibilitiesByExperienceId(experienceId);
     }
 }
