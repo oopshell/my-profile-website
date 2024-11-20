@@ -9,11 +9,21 @@ public interface ProjectService {
 
     Project saveProject(Project project);
 
-    List<Project> fetchAllProjects();
+    List<Project> findAllProjects();
 
-    Project getProjectById(Long id);
+    Project findProjectById(Long id);
 
-    Project getProjectBySlug(String slug);
+    Project findProjectBySlug(String slug);
+
+    List<ProjectDetail> findDetailsByProjectId(Long id);
+
+    List<ProjectDetail> findDetailsByProjectSlug(String slug);
+
+    List<ProjectTag> findTagsByProjectId(Long id);
+
+    List<ProjectTag> findTagsByProjectSlug(String slug);
+
+    List<Project> findProjectsByTagName(String tagName);
 
     Project updateProjectById(Long id, Project project, List<ProjectDetail> details, List<ProjectTag> tags);
 
