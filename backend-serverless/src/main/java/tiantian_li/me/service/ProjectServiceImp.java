@@ -8,6 +8,7 @@ import tiantian_li.me.repository.ProjectDetailRepository;
 import tiantian_li.me.repository.ProjectTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,14 +16,18 @@ import java.util.Optional;
 @Service
 public class ProjectServiceImp implements ProjectService {
 
-    @Autowired
-    private ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
+    private final ProjectDetailRepository projectDetailRepository;
+    private final ProjectTagRepository projectTagRepository;
 
     @Autowired
-    private ProjectDetailRepository projectDetailRepository;
-
-    @Autowired
-    private ProjectTagRepository projectTagRepository;
+    public ProjectServiceImp(ProjectRepository projectRepository,
+                             ProjectTagRepository projectTagRepository,
+                             ProjectDetailRepository projectDetailRepository) {
+        this.projectRepository = projectRepository;
+        this.projectTagRepository = projectTagRepository;
+        this.projectDetailRepository = projectDetailRepository;
+    }
 
     @Override
     public Project saveProject(Project project) {
@@ -30,18 +35,43 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public List<Project> fetchAllProjects() {
+    public List<Project> findAllProjects() {
         return projectRepository.findAll();
     }
 
     @Override
-    public Project getProjectById(Long id) {
+    public Project findProjectById(Long id) {
         return projectRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Project getProjectBySlug(String slug) {
+    public Project findProjectBySlug(String slug) {
         return projectRepository.findBySlug(slug).orElse(null);
+    }
+
+    @Override
+    public List<Project> findProjectsByTagName(String tagName) {
+        return projectRepository.findProjectsByTagName(tagName);
+    }
+
+    @Override
+    public List<ProjectDetail> findDetailsByProjectId(Long id) {
+        return projectDetailRepository.findDetailsByProjectId(id);
+    }
+
+    @Override
+    public List<ProjectDetail> findDetailsByProjectSlug(String slug) {
+        return projectDetailRepository.findDetailsByProjectSlug(slug);
+    }
+
+    @Override
+    public List<ProjectTag> findTagsByProjectId(Long id) {
+        return projectTagRepository.findTagsByProjectId(id);
+    }
+
+    @Override
+    public List<ProjectTag> findTagsByProjectSlug(String slug) {
+        return projectTagRepository.findTagsByProjectSlug(slug);
     }
 
     @Override
@@ -50,12 +80,11 @@ public class ProjectServiceImp implements ProjectService {
         if (project.isPresent()) {
             Project existingProject = project.get();
 
-            if (Objects.nonNull(projectUpdate.getSlug())) {
-                existingProject.setSlug(projectUpdate.getSlug());
-            }
-
             if (Objects.nonNull(projectUpdate.getName())) {
                 existingProject.setName(projectUpdate.getName());
+            }
+            if (Objects.nonNull(projectUpdate.getSlug())) {
+                existingProject.setSlug(projectUpdate.getSlug());
             }
             if (Objects.nonNull(projectUpdate.getDescription())) {
                 existingProject.setDescription(projectUpdate.getDescription());
