@@ -1,14 +1,24 @@
 package tiantian_li.me.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 @Entity
 @Table(name = "company")
 public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "company_id")
     private Long companyId;
 
     @Column(name = "company_name")
@@ -17,25 +27,12 @@ public class Company {
     @Column(name = "location")
     private String location;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+            mappedBy = "company",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Experience> experiences;
 
-    // Constructors
-    public Company() {}
-
-    public Company(Long companyId, String companyName, String location) {
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.location = location;
-    }
-
-    // Getters and setters
-    public Long getCompanyId() { return companyId; }
-    public String getCompanyName() { return companyName; }
-    public String getLocation() { return location; }
-    public List<Experience> getExperiences() { return experiences; }
-
-    public void setCompanyName(String companyName) { this.companyName = companyName; }
-    public void setLocation(String location) { this.location = location; }
-    public void setExperiences(List<Experience> experiences) { this.experiences = experiences; }
 }
