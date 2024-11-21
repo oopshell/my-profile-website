@@ -1,17 +1,27 @@
 package tiantian_li.me.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "project")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "project_id")
+    private Long projectId;
 
-    @Column(name = "slug")
+    @Column(name = "slug", unique = true)
     private String slug;
 
     @Column(name = "name")
@@ -27,92 +37,28 @@ public class Project {
     private String previewUrl;
 
     // One-to-many relationship with ProjectDetail
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @OneToMany(
+            mappedBy = "project",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true  // If the project is removed, remove all details associated with it
+    )
     private List<ProjectDetail> details;
 
     // Many-to-many relationship with ProjectTag through ProjectTagMapping
-    @ManyToMany
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
     @JoinTable(
             name = "project_tag_mapping",
-            joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
+            joinColumns = {
+                    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "tag_id", referencedColumnName = "tag_id")
+            }
     )
     private List<ProjectTag> tags;
 
-    // Constructors
-    public Project() {}
-
-    public Project(Long id, String slug, String name, String description, String gitUrl, String previewUrl) {
-        this.id = id;
-        this.slug = slug;
-        this.name = name;
-        this.description = description;
-        this.gitUrl = gitUrl;
-        this.previewUrl = previewUrl;
-    }
-
-    // Getters and setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getGitUrl() {
-        return gitUrl;
-    }
-
-    public void setGitUrl(String gitUrl) {
-        this.gitUrl = gitUrl;
-    }
-
-    public String getPreviewUrl() {
-        return previewUrl;
-    }
-
-    public void setPreviewUrl(String previewUrl) {
-        this.previewUrl = previewUrl;
-    }
-
-    public List<ProjectDetail> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<ProjectDetail> details) {
-        this.details = details;
-    }
-
-    public List<ProjectTag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<ProjectTag> tags) {
-        this.tags = tags;
-    }
 }
