@@ -8,9 +8,11 @@ import tiantian_li.me.entity.ProjectTag;
 
 import java.util.List;
 
-
 @Repository
 public interface ProjectTagRepository extends JpaRepository<ProjectTag, Long> {
     @Query("SELECT t FROM ProjectTag t JOIN t.projects p WHERE p.id = :projectId")
     List<ProjectTag> findTagsByProjectId(@Param("projectId") Long projectId);
+
+    @Query("SELECT t FROM ProjectTag t JOIN t.projects p WHERE p.slug = :slug")
+    List<ProjectTag> findTagsByProjectSlug(@Param("slug") String slug);
 }
