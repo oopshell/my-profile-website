@@ -1,23 +1,36 @@
 package tiantian_li.me.controller;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import tiantian_li.me.entity.Project;
-import tiantian_li.me.service.ProjectService;
-
-import java.util.Collections;
-import java.util.List;
-
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
-public class ProjectControllerUnitTest {
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import tiantian_li.me.entity.Project;
+import tiantian_li.me.entity.ProjectDetail;
+import tiantian_li.me.entity.ProjectTag;
+import tiantian_li.me.service.ProjectService;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+class ProjectControllerUnitTest {
 
     @InjectMocks
     private ProjectController projectController;
@@ -25,71 +38,103 @@ public class ProjectControllerUnitTest {
     @Mock
     private ProjectService projectService;
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    private MockMvc mockMvc;
+
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(projectController).build();
     }
 
     @Test
-    public void testSaveProject() {
-        Project project = new Project(1L, "Project Name", "Short Description", "Detailed Description", "http://project-link.com");
+    void testCreateProject() throws Exception {
+        List<ProjectDetail> details = Collections.emptyList();
+        List<ProjectTag> tags = Collections.emptyList();
+        Project project = new Project(null, "new-project-slug", "New Project", "Short Description", "Detailed Description", "http://project-link.com", details, tags);
+        Project savedProject = new Project(1L, "new-project-slug", "New Project", "Short Description", "Detailed Description", "http://project-link.com", details, tags);
 
-        given(projectService.saveProject(any(Project.class))).willReturn(project);
+        when(projectService.saveProject(any(Project.class))).thenReturn(savedProject);
 
-        Project savedProject = projectController.saveProject(new Project(null, "Project Name", "Short Description", "Detailed Description", "http://project-link.com"));
+        mockMvc.perform(post("/api/v1/projects")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(project)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.projectId").value(1L))
+                .andExpect(jsonPath("$.name").value("New Project"))
+                .andExpect(jsonPath("$.slug").value("new-project-slug"));
 
-        assertEquals(1L, savedProject.getId());
-        assertEquals("Project Name", savedProject.getName());
-        verify(projectService).saveProject(any(Project.class));
+        verify(projectService, times(1)).saveProject(any(Project.class));
     }
 
     @Test
-    public void testGetAllProjects() {
-        Project project = new Project(1L, "Project Name", "Short Description", "Detailed Description", "http://project-link.com");
-        List<Project> allProjects = Collections.singletonList(project);
+    void testGetAllProjects() throws Exception {
+        List<ProjectDetail> details = Collections.emptyList();
+        List<ProjectTag> tags = Collections.emptyList();
+        Project project1 = new Project(1L, "project-1-slug", "Project 1", "Short Description", "Detailed Description", "http://project-link.com", details, tags);
+        Project project2 = new Project(2L, "project-2-slug", "Project 2", "Short Description", "Detailed Description", "http://project-link.com", details, tags);
 
-        given(projectService.fetchAllProjects()).willReturn(allProjects);
+        when(projectService.findAllProjects()).thenReturn(List.of(project1, project2));
 
-        List<Project> projects = projectController.getAllProjects();
+        mockMvc.perform(get("/api/v1/projects"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("Project 1"))
+                .andExpect(jsonPath("$[1].name").value("Project 2"));
 
-        assertEquals(1, projects.size());
-        assertEquals("Project Name", projects.get(0).getName());
-        verify(projectService).fetchAllProjects();
+        verify(projectService, times(1)).findAllProjects();
     }
 
     @Test
-    public void testGetProjectById() {
-        Project project = new Project(1L, "Project Name", "Short Description", "Detailed Description", "http://project-link.com");
+    void testGetProjectById_whenProjectExists() throws Exception {
+        List<ProjectDetail> details = Collections.emptyList();
+        List<ProjectTag> tags = Collections.emptyList();
+        Project project = new Project(1L, "existing-project", "Existing Project", "Short Description", "Detailed Description", "http://project-link.com", details, tags);
 
-        given(projectService.getProjectById(1L)).willReturn(project);
+        when(projectService.findProjectById(1L)).thenReturn(project);
 
-        Project fetchedProject = projectController.getProjectById(1L);
-
-        assertEquals(1L, fetchedProject.getId());
-        assertEquals("Project Name", fetchedProject.getName());
-        verify(projectService).getProjectById(1L);
+        mockMvc.perform(get("/api/v1/projects/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.projectId").value(1L))
+                .andExpect(jsonPath("$.name").value("Existing Project"))
+                .andExpect(jsonPath("$.slug").value("existing-project"));
     }
 
     @Test
-    public void testUpdateProject() {
-        Project project = new Project(1L, "Updated Project Name", "Updated Short Description", "Updated Detailed Description", "http://updated-project-link.com");
+    void testGetProjectById_whenProjectDoesNotExist() throws Exception {
+        when(projectService.findProjectById(1L)).thenReturn(null);
 
-        given(projectService.updateProjectById(eq(1L), any(Project.class))).willReturn(project);
-
-        Project updatedProject = projectController.updateProject(1L, new Project(null, "Updated Project Name", "Updated Short Description", "Updated Detailed Description", "http://updated-project-link.com"));
-
-        assertEquals(1L, updatedProject.getId());
-        assertEquals("Updated Project Name", updatedProject.getName());
-        verify(projectService).updateProjectById(eq(1L), any(Project.class));
+        mockMvc.perform(get("/api/v1/projects/{id}", 1L))
+                .andExpect(status().isNotFound());
     }
 
     @Test
-    public void testDeleteProject() {
-        given(projectService.deleteProjectById(1L)).willReturn("Project deleted successfully");
+    void testGetProjectById() throws Exception {
+        List<ProjectDetail> details = Collections.emptyList();
+        List<ProjectTag> tags = Collections.emptyList();
+        Long projectId = 1L;
+        Project project = new Project(projectId, "project-1-slug", "Project 1", "Short Description", "Detailed Description", "http://project-link.com", details, tags);
 
-        String response = projectController.deleteProject(1L);
+        when(projectService.findProjectById(projectId)).thenReturn(project);
 
-        assertEquals("Project deleted successfully", response);
-        verify(projectService).deleteProjectById(1L);
+        mockMvc.perform(get("/api/v1/projects/{id}", projectId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.projectId").value(projectId))
+                .andExpect(jsonPath("$.name").value("Project 1"))
+                .andExpect(jsonPath("$.slug").value("project-1-slug"));
+
+        verify(projectService, times(1)).findProjectById(projectId);
+    }
+
+    @Test
+    void testDeleteProjectById() throws Exception {
+        Long projectId = 1L;
+        when(projectService.deleteProjectById(projectId)).thenReturn("Project has been deleted");
+
+        mockMvc.perform(delete("/api/v1/projects/{id}", projectId))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Project has been deleted"));
+
+        verify(projectService, times(1)).deleteProjectById(projectId);
     }
 }
