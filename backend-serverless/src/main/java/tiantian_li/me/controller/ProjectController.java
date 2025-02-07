@@ -37,15 +37,15 @@ public class ProjectController {
         return ResponseEntity.ok(projects);
     }
 
-    // Retrieve a single project by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable Long id) {
-        Project project = projectService.findProjectById(id);
-        return project != null ? ResponseEntity.ok(project) : ResponseEntity.notFound().build();
-    }
+    // // Retrieve a single project by ID
+    // @GetMapping("/{id}")
+    // public ResponseEntity<Project> getProjectById(@PathVariable Long id) {
+    //     Project project = projectService.findProjectById(id);
+    //     return project != null ? ResponseEntity.ok(project) : ResponseEntity.notFound().build();
+    // }
 
     // Retrieve a single Project by Slug
-    @GetMapping("/slug/{slug}")
+    @GetMapping("/{slug}")
     public ResponseEntity<Project> getProjectBySlug(@PathVariable String slug) {
         Project project = projectService.findProjectBySlug(slug);
         return project != null ? ResponseEntity.ok(project) : ResponseEntity.notFound().build();
@@ -64,10 +64,17 @@ public class ProjectController {
     }
 
     // Get project details by project slug
-    @GetMapping("/slug/{slug}/details")
+    @GetMapping("/{slug}/details")
     public ResponseEntity<List<ProjectDetail>> getProjectDetailsBySlug(@PathVariable String slug) {
         List<ProjectDetail> projectDetails = projectService.findDetailsByProjectSlug(slug);
         return ResponseEntity.ok(projectDetails);
+    }
+
+    // Get all tags
+    @GetMapping("/project-tags")
+    public ResponseEntity<List<ProjectTag>> getAllTags() {
+        List<ProjectTag> tags = projectService.findAllTags();
+        return ResponseEntity.ok(tags);
     }
 
     // Get project tags by project ID
@@ -83,7 +90,7 @@ public class ProjectController {
     }
 
     // Get project tags by project slug
-    @GetMapping("/slug/{slug}/tags")
+    @GetMapping("/{slug}/tags")
     public ResponseEntity<List<ProjectTag>> getProjectTagsBySlug(@PathVariable String slug) {
         List<ProjectTag> projectTags = projectService.findTagsByProjectSlug(slug);
         return ResponseEntity.ok(projectTags);
