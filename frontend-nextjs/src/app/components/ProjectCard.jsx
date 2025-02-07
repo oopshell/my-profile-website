@@ -1,5 +1,5 @@
 import React from "react";
-import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
+import { CodeBracketIcon, EyeIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) => {
@@ -18,7 +18,7 @@ const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) =
           {gitUrl && (
             <Link
               href={gitUrl}
-              // href={`/project/${slug}`}
+              target="_blank"
               className="h-14 w-14 mr-2 border-2 relative rounded-full border-[#ADB7BE] hover:border-white group/link"
             >
               <CodeBracketIcon className="h-10 w-10 text-[#ADB7BE] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  cursor-pointer group-hover/link:text-white" />
@@ -27,17 +27,23 @@ const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) =
           {previewUrl && (
             <Link
               href={previewUrl}
-              // href={`/project/${slug}`}
-              className="h-14 w-14 border-2 relative rounded-full border-[#ADB7BE] hover:border-white group/link"
+              target="_blank"
+              className="h-14 w-14 mr-2 border-2 relative rounded-full border-[#ADB7BE] hover:border-white group/link"
             >
               <EyeIcon className="h-10 w-10 text-[#ADB7BE] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  cursor-pointer group-hover/link:text-white" />
             </Link>
           )}
+          <Link
+            href={`/project/${slug}`}
+            className="h-14 w-14 border-2 relative rounded-full border-[#ADB7BE] hover:border-white group/link"
+          >
+            <InformationCircleIcon className="h-10 w-10 text-[#ADB7BE] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  cursor-pointer group-hover/link:text-white" />
+          </Link>
         </div>
       </div>
       <div className="text-white rounded-b-xl mt-3 bg-[#181818]py-6 px-4">
         <h5 className="text-xl font-semibold mb-2">{title}</h5>
-        <p className="text-[#ADB7BE]">{description}</p>
+        <p className="text-[#ADB7BE] line-clamp-2">{description}</p>
       </div>
     </div>
   );
