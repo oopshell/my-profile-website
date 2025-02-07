@@ -22,7 +22,7 @@ const projectsData = [
     description: "Full-stack MEVN web app for airline ethics game, developed with Agile methodology, featuring robust login, re-join function, real-time UI enhancements, and client collaboration",
     image: "/images/projects/2.png",
     tag: ["All", "Web", "Java"],
-    gitUrl: "/",
+    gitUrl: "",
     previewUrl: "https://d28tzhn3mqh229.cloudfront.net",
   },
   {
@@ -33,7 +33,7 @@ const projectsData = [
     image: "/images/projects/3.png",
     tag: ["All", "Data Visualisation"],
     gitUrl: "https://github.com/oopshell/tidytuesday-bigfoot-dashboard-shiny-app",
-    previewUrl: "/",
+    previewUrl: "",
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const projectsData = [
     image: "/images/projects/4.png",
     tag: ["All", "Machine Learning"],
     gitUrl: "https://github.com/oopshell/ML-basic-KNN-NB-LR-MLP-sentiment-classifier",
-    previewUrl: "/",
+    previewUrl: "",
   },
   {
     id: 5,
@@ -53,7 +53,7 @@ const projectsData = [
     image: "/images/projects/5.png",
     tag: ["All", "Machine Learning"],
     gitUrl: "https://github.com/oopshell/COVID19-Rumour-Detection",
-    previewUrl: "/",
+    previewUrl: "",
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ const projectsData = [
     image: "/images/projects/6.png",
     tag: ["All", "Java"],
     gitUrl: "https://github.com/oopshell/lucky-draw-competition",
-    previewUrl: "/",
+    previewUrl: "",
   },
   {
     id: 7,
@@ -72,7 +72,7 @@ const projectsData = [
     description: "Autonomous, fair data exchange using Ethereum smart contracts for secure, private, and cost-effective transactions",
     image: "/images/projects/7.png",
     tag: ["All", "Research"],
-    gitUrl: "/",
+    gitUrl: "",
     previewUrl: "https://doi.org/10.1016/j.ins.2020.08.116",
   },
   {
@@ -102,7 +102,7 @@ const projectsData = [
     description: "Comprehensive Bitcoin transaction dataset creation, subgraph generation, and behavior analysis using machine learning for address classification and feature importance insights",
     image: "/images/projects/10.png",
     tag: ["All", "Research", "Machine Learning"],
-    gitUrl: "/",
+    gitUrl: "",
     previewUrl: "https://doi.org/10.1109/TIFS.2023.3347894",
   },
   {
@@ -112,7 +112,7 @@ const projectsData = [
     description: "Bitcoin address classification using machine learning and graph neural networks to enhance cryptocurrency security with a 91.35% accuracy",
     image: "/images/projects/11.png",
     tag: ["All", "Research", "Machine Learning"],
-    gitUrl: "/",
+    gitUrl: "",
     previewUrl: "https://doi.org/10.1109/BigData55660.2022.10020980",
   },
   {
@@ -122,8 +122,8 @@ const projectsData = [
     description: "Spatial Database for University Drone Management with CASA Compliance and Real-time Operational Support",
     image: "/images/projects/12.png",
     tag: ["All", "GIS"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "",
+    previewUrl: "",
   },
   {
     id: 13,
@@ -132,8 +132,8 @@ const projectsData = [
     description: "Interactive Tableau dashboard analyzing Melbourne crash data, providing insights and recommendations for VicRoads to enhance road safety",
     image: "/images/projects/13.png",
     tag: ["All", "Data Visualisation"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "",
+    previewUrl: "",
   },
   {
     id: 14,
