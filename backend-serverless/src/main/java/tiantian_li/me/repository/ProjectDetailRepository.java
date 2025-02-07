@@ -13,6 +13,6 @@ public interface ProjectDetailRepository extends JpaRepository<ProjectDetail, Lo
     @Query("SELECT d FROM ProjectDetail d WHERE d.project.id = :projectId")
     List<ProjectDetail> findDetailsByProjectId(@Param("projectId") Long projectId);
 
-    @Query("SELECT d FROM ProjectDetail d WHERE d.project.slug = :slug")
+    @Query("SELECT d FROM ProjectDetail d JOIN FETCH d.project p WHERE p.slug = :slug")
     List<ProjectDetail> findDetailsByProjectSlug(@Param("slug") String slug);
 }
