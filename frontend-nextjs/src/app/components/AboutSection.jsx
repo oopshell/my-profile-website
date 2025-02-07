@@ -9,14 +9,13 @@ const TAB_DATA = [
     id: "skills",
     content: (
       <ul className="list-disc pl-2">
-        <li><strong>Languages: </strong>Java, Python, TypeScript, JavaScript, R, Solidity, C</li>
-        <li><strong>Frontend: </strong>HTML5, CSS, SASS, React.js, Next.js, Vue.js, Bootstrap, Vite</li>
-        <li><strong>Backend: </strong>Node.js, Spring Boot, Express.js, GraphQL, Nest.js</li>
-        <li><strong>Database: </strong>MySQL, PostgreSQL, NoSQL, MongoDB, QGIS, Tableau</li>
-        <li><strong>Testing: </strong>Jest, JUnit, TDD, BDD, Unit Test, Integration Test</li>
-        <li><strong>DevOps: </strong>Docker, CI/CD, GitHub Actions, AWS (RDS, EC2, S3, CloudFront, Route 53, Load Balancer, Lambda)</li>
-        <li><strong>Tools: </strong>Git, Postman, Jira, Trello, Confluence, Slack, Microsoft Teams</li>
-        <li><strong>Other: </strong>REST APIs, Agile, CI/CD, OAuth, Data Visualisation, SEO</li>
+        <li><strong>Frontend: </strong>React, TypeScript, JavaScript, Next.js, Redux</li>
+        <li><strong>Backend: </strong>Java, Spring Boot, Python, FastAPI, Node.js, RESTful API, GraphQL, Swagger</li>
+        <li><strong>DevOps: </strong>Docker, Kubernetes, Git, CI/CD, GitHub Actions, Jenkins, Vercel, AWS (EC2, Application Load Balancer, S3, Lambda, CloudFront, Route 53, RDS, Amplify)</li>
+        <li><strong>AI & Machine Learning: </strong>Scikit-Learn, TensorFlow, PyTorch, LLM (OpenAI API, Llama, Hugging Face Transformers), RAG, LangChain, LLMOps (Prompt Engineering), NLP</li>
+        <li><strong>Data & Analytics: </strong>Apache Spark (PySpark), Kafka, Redis, PostgreSQL, MySQL, MongoDB</li>
+        <li><strong>Other: </strong>Skilled in Agile development, utilising project tracking and collaboration tools such as Jira and
+        Confluence to effectively manage sprints and document workflows</li>
       </ul>
     ),
   },
@@ -71,8 +70,8 @@ const AboutSection = () => {
           <p className="text-base lg:text-lg">
             I am a full-stack developer and data scientist skilled in Java, 
             Python, and TypeScript, with expertise across frontend (React, Next.js), 
-            backend (Node.js, Spring Boot, GraphQL), and database management with MySQL 
-            and MongoDB. Proficient in CI/CD and AWS, I am passionate about working with 
+            backend (Spring Boot, Node.js, RESTful API, GraphQL), and database management with MySQL 
+            and NoSQL. Proficient in CI/CD and AWS, I am passionate about working with 
             teams to craft secure, high-performance applications and deliver optimised, 
             innovative solutions. Explore my work on my portfolio and GitHub.
           </p>
