@@ -65,6 +65,11 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
+    public List<ProjectTag> findAllTags() {
+        return projectTagRepository.findAll();
+    }
+
+    @Override
     public List<ProjectTag> findTagsByProjectId(Long id) {
         return projectTagRepository.findTagsByProjectId(id);
     }

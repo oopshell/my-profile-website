@@ -19,6 +19,8 @@ public interface ProjectService {
 
     List<ProjectDetail> findDetailsByProjectSlug(String slug);
 
+    List<ProjectTag> findAllTags();
+
     List<ProjectTag> findTagsByProjectId(Long id);
 
     List<ProjectTag> findTagsByProjectSlug(String slug);
