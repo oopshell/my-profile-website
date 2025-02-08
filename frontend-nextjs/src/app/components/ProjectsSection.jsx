@@ -89,7 +89,7 @@ const ProjectsSection = () => {
   }
 
   return (
-    <section id="projects">
+    <section id="projects" className="min-h-screen">
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
         My Projects
       </h2>
@@ -106,33 +106,23 @@ const ProjectsSection = () => {
       <div className="text-white text-center mb-4">
         Current tag: {tag}, Number of filtered projects: {filteredProjects.length}
       </div>
-      <div ref={ref} className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.projectId}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.3
-              }}
-              className="w-full"
-            >
-              <ProjectCard
-                slug={project.slug}
-                title={project.name}
-                description={project.description}
-                imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
-                gitUrl={project.gitUrl}
-                previewUrl={project.previewUrl}
-              />
-            </motion.div>
-          ))}
+      <div className="container mx-auto px-4 border-2 border-red-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+          {filteredProjects.length === 0 ? (
+            <div className="col-span-full text-center text-white text-xl">
+              No projects found for this tag
+            </div>
+          ) : (
+            filteredProjects.map((project) => (
+              <div key={project.projectId} className="w-full border-2 border-blue-500 p-2">
+                <TestProjectCard
+                  imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
+                  title={project.name}
+                  description={project.description}
+                />
+              </div>
+            ))
+          )}
         </div>
       </div>
     </section>
