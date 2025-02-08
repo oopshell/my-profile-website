@@ -22,7 +22,6 @@ const ProjectsSection = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Fetched tags:', data);
         setTags(['All', ...data.filter(tag => tag.tagName !== 'All').map(tag => tag.tagName)]);
       } catch (error) {
         console.error('Error fetching tags:', error);
@@ -37,7 +36,6 @@ const ProjectsSection = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('Fetched projects:', data);
         setProjects(data);
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -52,12 +50,10 @@ const ProjectsSection = () => {
   }, []);
 
   const handleTagChange = (newTag) => {
-    console.log('Tag changed to:', newTag);
     setTag(newTag);
   };
 
   const filteredProjects = projects.filter((project) => {
-    console.log('Filtering project:', project);
     if (tag === "All") return true;
     return project.tags && Array.isArray(project.tags) && project.tags.some(t => t.tagName === tag);
   });
@@ -103,18 +99,27 @@ const ProjectsSection = () => {
           />
         ))}
       </div>
-      <div className="text-white text-center mb-4">
-        Current tag: {tag}, Number of filtered projects: {filteredProjects.length}
-      </div>
-      <div className="container mx-auto px-4 border-2 border-red-500">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+      <div ref={ref} className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.length === 0 ? (
             <div className="col-span-full text-center text-white text-xl">
               No projects found for this tag
             </div>
           ) : (
-            filteredProjects.map((project) => (
-              <div key={project.projectId} className="w-full border-2 border-blue-500 p-2">
+            filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.projectId}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.3
+                }}
+              >
                 <ProjectCard
                   slug={project.slug}
                   title={project.name}
@@ -123,7 +128,7 @@ const ProjectsSection = () => {
                   gitUrl={project.gitUrl}
                   previewUrl={project.previewUrl}
                 />
-              </div>
+              </motion.div>
             ))
           )}
         </div>
