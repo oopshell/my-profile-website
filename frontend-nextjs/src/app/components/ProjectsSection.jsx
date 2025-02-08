@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import ProjectCard from "./ProjectCard";
+import TestProjectCard from "./TestProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
 
@@ -97,6 +98,13 @@ const ProjectsSection = () => {
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
         My Projects
       </h2>
+      <div className="flex justify-center mb-8">
+        <TestProjectCard
+          imgUrl="https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/my-profile-website.png"
+          title="Test Project Card"
+          description="This is a test description to verify rendering"
+        />
+      </div>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
         {tags.map((tagName) => (
           <ProjectTag
