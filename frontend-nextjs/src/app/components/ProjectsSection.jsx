@@ -83,7 +83,7 @@ const ProjectsSection = () => {
   }
 
   return (
-    <section id="projects">
+    <section id="projects" className="min-h-screen px-4">
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
         My Projects
       </h2>
@@ -100,36 +100,39 @@ const ProjectsSection = () => {
           );
         })}
       </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {filteredProjects.length > 0 ? (
-          filteredProjects.map((project, index) => {
-            console.log('Rendering project:', project.name);
-            return (
-              <motion.li
-                key={project.projectId}
-                variants={cardVariants}
-                initial="initial"
-                animate={isInView ? "animate" : "initial"}
-                transition={{ duration: 0.3, delay: index * 0.4 }}
-              >
-                <ProjectCard
+      <div className="container mx-auto">
+        <ul ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project, index) => {
+              console.log('Rendering project:', project.name);
+              return (
+                <motion.li
                   key={project.projectId}
-                  slug={project.slug}
-                  title={project.name}
-                  description={project.description}
-                  imgUrl={`/images/projects/${project.slug}.png`}
-                  gitUrl={project.gitUrl}
-                  previewUrl={project.previewUrl}
-                />
-              </motion.li>
-            );
-          })
-        ) : (
-          <div className="col-span-3 text-center text-white">
-            No projects found for this tag.
-          </div>
-        )}
-      </ul>
+                  variants={cardVariants}
+                  initial="initial"
+                  animate={isInView ? "animate" : "initial"}
+                  transition={{ duration: 0.3, delay: index * 0.4 }}
+                  className="flex"
+                >
+                  <ProjectCard
+                    key={project.projectId}
+                    slug={project.slug}
+                    title={project.name}
+                    description={project.description}
+                    imgUrl={`/images/projects/${project.slug}.png`}
+                    gitUrl={project.gitUrl}
+                    previewUrl={project.previewUrl}
+                  />
+                </motion.li>
+              );
+            })
+          ) : (
+            <div className="col-span-full text-center text-white py-8">
+              No projects found for this tag.
+            </div>
+          )}
+        </ul>
+      </div>
     </section>
   );
 };
