@@ -44,7 +44,7 @@ const ProjectsSection = () => {
   };
 
   const filteredProjects = projects.filter((project) =>
-    tag === "All" ? true : project.tags.includes(tag)
+    tag === "All" ? true : project.tags.some(t => t.tagName === tag)
   );
 
   const cardVariants = {
