@@ -98,13 +98,6 @@ const ProjectsSection = () => {
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
         My Projects
       </h2>
-      <div className="flex justify-center mb-8">
-        <TestProjectCard
-          imgUrl="https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/my-profile-website.png"
-          title="Test Project Card"
-          description="This is a test description to verify rendering"
-        />
-      </div>
       <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
         {tags.map((tagName) => (
           <ProjectTag
@@ -121,13 +114,23 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <div key={project.projectId} className="w-full">
-              <TestProjectCard
-                imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
+            <motion.div
+              key={project.projectId}
+              variants={cardVariants}
+              initial="initial"
+              animate={isInView ? "animate" : "initial"}
+              transition={{ duration: 0.3, delay: index * 0.4 }}
+              className="w-full"
+            >
+              <ProjectCard
+                slug={project.slug}
                 title={project.name}
                 description={project.description}
+                imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
+                gitUrl={project.gitUrl}
+                previewUrl={project.previewUrl}
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
