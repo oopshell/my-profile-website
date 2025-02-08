@@ -46,8 +46,8 @@ const ProjectsSection = () => {
   };
 
   const filteredProjects = projects.filter((project) => {
-    console.log('Filtering project:', project.name, 'Current tag:', tag);
-    console.log('Project tags:', project.tags);
+    // console.log('Filtering project:', project.name, 'Current tag:', tag);
+    // console.log('Project tags:', project.tags);
     if (tag === "All") return true;
     return project.tags && project.tags.some(t => t.tagName === tag);
   });
