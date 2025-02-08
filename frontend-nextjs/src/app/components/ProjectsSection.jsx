@@ -115,10 +115,13 @@ const ProjectsSection = () => {
           ) : (
             filteredProjects.map((project) => (
               <div key={project.projectId} className="w-full border-2 border-blue-500 p-2">
-                <TestProjectCard
-                  imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
+                <ProjectCard
+                  slug={project.slug}
                   title={project.name}
                   description={project.description}
+                  imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
+                  gitUrl={project.gitUrl}
+                  previewUrl={project.previewUrl}
                 />
               </div>
             ))
