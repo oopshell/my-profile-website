@@ -15,9 +15,9 @@ const ProjectsSection = () => {
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await fetch('/api/project-tags');
+        const response = await fetch('https://d3ufl59cmg25n3.cloudfront.net/prod/api/v1/projects/project-tags');
         const data = await response.json();
-        setTags(['All', ...data.map(tag => tag.tag_name)]);
+        setTags(['All', ...data.map(tag => tag.tagName)]);
       } catch (error) {
         console.error('Error fetching tags:', error);
       }
@@ -25,7 +25,7 @@ const ProjectsSection = () => {
 
     const fetchProjects = async () => {
       try {
-        const response = await fetch('/api/projects');
+        const response = await fetch('https://d3ufl59cmg25n3.cloudfront.net/prod/api/v1/projects');
         const data = await response.json();
         setProjects(data);
       } catch (error) {
