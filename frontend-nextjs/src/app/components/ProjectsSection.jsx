@@ -99,27 +99,21 @@ const ProjectsSection = () => {
           />
         ))}
       </div>
-      <div ref={ref} className="container mx-auto px-4">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="container mx-auto px-4"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.length === 0 ? (
             <div className="col-span-full text-center text-white text-xl">
               No projects found for this tag
             </div>
           ) : (
-            filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.projectId}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.3
-                }}
-              >
+            filteredProjects.map((project) => (
+              <div key={project.projectId}>
                 <ProjectCard
                   slug={project.slug}
                   title={project.name}
@@ -128,11 +122,11 @@ const ProjectsSection = () => {
                   gitUrl={project.gitUrl}
                   previewUrl={project.previewUrl}
                 />
-              </motion.div>
+              </div>
             ))
           )}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
