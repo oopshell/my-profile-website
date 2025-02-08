@@ -115,43 +115,22 @@ const ProjectsSection = () => {
           />
         ))}
       </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {filteredProjects.length > 0 ? (
-          filteredProjects.map((project, index) => {
-            console.log('Rendering project:', {
-              projectId: project.projectId,
-              slug: project.slug,
-              name: project.name,
-              description: project.description,
-              gitUrl: project.gitUrl,
-              previewUrl: project.previewUrl
-            });
-            return (
-              <motion.li
-                key={project.projectId}
-                variants={cardVariants}
-                initial="initial"
-                animate={isInView ? "animate" : "initial"}
-                transition={{ duration: 0.3, delay: index * 0.4 }}
-              >
-                <ProjectCard
-                  key={project.projectId}
-                  slug={project.slug}
-                  title={project.name}
-                  description={project.description}
-                  imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
-                  gitUrl={project.gitUrl}
-                  previewUrl={project.previewUrl}
-                />
-              </motion.li>
-            );
-          })
-        ) : (
-          <div className="col-span-3 text-center text-white">
-            No projects found for this tag.
-          </div>
-        )}
-      </ul>
+      <div className="text-white text-center mb-4">
+        Current tag: {tag}, Number of filtered projects: {filteredProjects.length}
+      </div>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <div key={project.projectId} className="w-full">
+              <TestProjectCard
+                imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
+                title={project.name}
+                description={project.description}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
