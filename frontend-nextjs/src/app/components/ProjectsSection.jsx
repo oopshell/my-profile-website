@@ -17,6 +17,7 @@ const ProjectsSection = () => {
       try {
         const response = await fetch('https://d3ufl59cmg25n3.cloudfront.net/prod/api/v1/projects/project-tags');
         const data = await response.json();
+        console.log('Fetched tags:', data);
         setTags(['All', ...data.filter(tag => tag.tagName !== 'All').map(tag => tag.tagName)]);
       } catch (error) {
         console.error('Error fetching tags:', error);
@@ -27,6 +28,7 @@ const ProjectsSection = () => {
       try {
         const response = await fetch('https://d3ufl59cmg25n3.cloudfront.net/prod/api/v1/projects');
         const data = await response.json();
+        console.log('Fetched projects:', data);
         setProjects(data);
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -43,9 +45,14 @@ const ProjectsSection = () => {
     setTag(newTag);
   };
 
-  const filteredProjects = projects.filter((project) =>
-    tag === "All" ? true : project.tags.some(t => t.tagName === tag)
-  );
+  const filteredProjects = projects.filter((project) => {
+    console.log('Filtering project:', project.name, 'Current tag:', tag);
+    console.log('Project tags:', project.tags);
+    return tag === "All" ? true : project.tags.some(t => {
+      console.log('Checking tag:', t.tagName, 'against:', tag);
+      return t.tagName === tag;
+    });
+  });
 
   const cardVariants = {
     initial: { y: 50, opacity: 0 },
