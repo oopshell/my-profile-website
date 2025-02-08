@@ -9,29 +9,38 @@ const ProjectsSection = () => {
   const [projects, setProjects] = useState([]);
   const [tags, setTags] = useState(["All"]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     const fetchTags = async () => {
       try {
-        const response = await fetch('https://d3ufl59cmg25n3.cloudfront.net/prod/api/v1/projects/project-tags');
+        const response = await fetch('/api/project-tags');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         console.log('Fetched tags:', data);
         setTags(['All', ...data.filter(tag => tag.tagName !== 'All').map(tag => tag.tagName)]);
       } catch (error) {
         console.error('Error fetching tags:', error);
+        setError('Failed to load project tags');
       }
     };
 
     const fetchProjects = async () => {
       try {
-        const response = await fetch('https://d3ufl59cmg25n3.cloudfront.net/prod/api/v1/projects');
+        const response = await fetch('/api/projects');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         console.log('Fetched projects:', data);
         setProjects(data);
       } catch (error) {
         console.error('Error fetching projects:', error);
+        setError('Failed to load projects');
       } finally {
         setIsLoading(false);
       }
@@ -56,6 +65,19 @@ const ProjectsSection = () => {
     initial: { y: 50, opacity: 0 },
     animate: { y: 0, opacity: 1 },
   };
+
+  if (error) {
+    return (
+      <section id="projects">
+        <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+          My Projects
+        </h2>
+        <div className="flex justify-center items-center min-h-[60vh]">
+          <p className="text-red-500">{error}</p>
+        </div>
+      </section>
+    );
+  }
 
   if (isLoading) {
     return (
