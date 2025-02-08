@@ -17,7 +17,7 @@ const ProjectsSection = () => {
       try {
         const response = await fetch('https://d3ufl59cmg25n3.cloudfront.net/prod/api/v1/projects/project-tags');
         const data = await response.json();
-        setTags(['All', ...data.map(tag => tag.tagName)]);
+        setTags(['All', ...data.filter(tag => tag.tagName !== 'All').map(tag => tag.tagName)]);
       } catch (error) {
         console.error('Error fetching tags:', error);
       }
