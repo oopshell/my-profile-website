@@ -4,10 +4,9 @@ import Link from "next/link";
 
 const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) => {
   const [imageError, setImageError] = useState(false);
-  console.log('ProjectCard rendering:', { title, imgUrl });
 
   return (
-    <div className="bg-[#181818] rounded-xl overflow-hidden w-full border-2 border-green-500">
+    <div className="bg-[#181818] rounded-xl overflow-hidden w-full">
       {/* Image Container */}
       <div className="h-52 md:h-72 relative group">
         {!imageError ? (
@@ -15,11 +14,7 @@ const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) =
             src={imgUrl}
             alt={title}
             className="w-full h-full object-cover"
-            onError={() => {
-              console.log('Project image failed to load:', imgUrl);
-              setImageError(true);
-            }}
-            onLoad={() => console.log('Project image loaded successfully:', imgUrl)}
+            onError={() => setImageError(true)}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-[#181818] text-white text-xl font-bold p-4 text-center">
