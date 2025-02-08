@@ -1,36 +1,33 @@
 import React, { useState } from "react";
 import { CodeBracketIcon, EyeIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import Image from "next/image";
 
 const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) => {
   const [imageError, setImageError] = useState(false);
+  console.log('ProjectCard rendering:', { title, imgUrl });
 
   return (
-    <div className="bg-[#181818] rounded-xl overflow-hidden">
+    <div className="bg-[#181818] rounded-xl overflow-hidden w-full">
       <div className="h-52 md:h-72 relative group">
         {!imageError ? (
-          <div className="relative w-full h-full">
-            <Image
-              src={imgUrl}
-              alt={title}
-              fill
-              style={{ objectFit: 'cover' }}
-              onError={() => {
-                console.log('Image failed to load:', imgUrl);
-                setImageError(true);
-              }}
-              onLoad={() => console.log('Image loaded successfully:', imgUrl)}
-              unoptimized={true}
-              priority={true}
-            />
-          </div>
+          <img
+            src={imgUrl}
+            alt={title}
+            className="w-full h-full object-cover"
+            onError={() => {
+              console.log('Project image failed to load:', imgUrl);
+              setImageError(true);
+            }}
+            onLoad={() => console.log('Project image loaded successfully:', imgUrl)}
+          />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-[#181818] text-white text-xl font-bold p-4 text-center">
             {title}
           </div>
         )}
-        <div className="overlay items-center justify-center absolute top-0 left-0 w-full h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500">
+        
+        {/* Hover overlay with buttons */}
+        <div className="absolute inset-0 bg-[#181818] bg-opacity-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-opacity-80 transition-all duration-500">
           {gitUrl && (
             <Link
               href={gitUrl}
@@ -58,6 +55,7 @@ const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) =
           </Link>
         </div>
       </div>
+
       <div className="text-white py-6 px-4">
         <h5 className="text-xl font-semibold mb-2">{title}</h5>
         <p className="text-[#ADB7BE]">{description}</p>
