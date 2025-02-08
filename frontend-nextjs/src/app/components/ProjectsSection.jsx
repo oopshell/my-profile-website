@@ -109,7 +109,7 @@ const ProjectsSection = () => {
                   slug={project.slug}
                   title={project.name}
                   description={project.description}
-                  imgUrl={`/images/projects/${project.slug}.png`}
+                  imgUrl={`https://my-profile-projects.s3.ap-southeast-2.amazonaws.com/${project.slug}.png`}
                   gitUrl={project.gitUrl}
                   previewUrl={project.previewUrl}
                 />
