@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { CodeBracketIcon, EyeIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 
 const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) => {
-  console.log('ProjectCard props:', { slug, imgUrl, title, description, gitUrl, previewUrl });
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div>
       <div
-        className="h-52 md:h-72 rounded-t-xl relative group"
+        className="h-52 md:h-72 rounded-t-xl relative group bg-[#181818]"
         style={{
-          background: `url(${imgUrl})`,
+          backgroundImage: !imageError ? `url(${imgUrl})` : 'none',
           backgroundSize: "cover",
           backgroundPosition: "center",
           overflow: "hidden",
         }}
       >
+        {imageError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#181818] text-white text-xl font-bold p-4 text-center">
+            {title}
+          </div>
+        )}
         <div className="overlay items-center justify-center absolute top-0 left-0 w-full h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500 ">
           {gitUrl && (
             <Link
@@ -42,6 +49,12 @@ const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) =
             <InformationCircleIcon className="h-10 w-10 text-[#ADB7BE] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  cursor-pointer group-hover/link:text-white" />
           </Link>
         </div>
+        <img
+          src={imgUrl}
+          alt={title}
+          className="hidden"
+          onError={() => setImageError(true)}
+        />
       </div>
       <div className="text-white rounded-b-xl mt-3 bg-[#181818] py-6 px-4">
         <h5 className="text-xl font-semibold mb-2">{title}</h5>
