@@ -8,16 +8,23 @@ const ProjectCard = ({ slug, imgUrl, title, description, gitUrl, previewUrl }) =
 
   return (
     <div className="bg-[#181818] rounded-xl overflow-hidden">
-      <div
-        className="h-52 md:h-72 relative group"
-      >
+      <div className="h-52 md:h-72 relative group">
         {!imageError ? (
-          <img
-            src={imgUrl}
-            alt={title}
-            className="w-full h-full object-cover"
-            onError={() => setImageError(true)}
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={imgUrl}
+              alt={title}
+              fill
+              style={{ objectFit: 'cover' }}
+              onError={() => {
+                console.log('Image failed to load:', imgUrl);
+                setImageError(true);
+              }}
+              onLoad={() => console.log('Image loaded successfully:', imgUrl)}
+              unoptimized={true}
+              priority={true}
+            />
+          </div>
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-[#181818] text-white text-xl font-bold p-4 text-center">
             {title}
