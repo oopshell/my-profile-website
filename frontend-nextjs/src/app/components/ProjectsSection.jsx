@@ -62,11 +62,6 @@ const ProjectsSection = () => {
     return project.tags && Array.isArray(project.tags) && project.tags.some(t => t.tagName === tag);
   });
 
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
-
   if (error) {
     return (
       <section id="projects">
@@ -111,15 +106,21 @@ const ProjectsSection = () => {
       <div className="text-white text-center mb-4">
         Current tag: {tag}, Number of filtered projects: {filteredProjects.length}
       </div>
-      <div className="container mx-auto px-4">
+      <div ref={ref} className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.projectId}
-              variants={cardVariants}
-              initial="initial"
-              animate={isInView ? "animate" : "initial"}
-              transition={{ duration: 0.3, delay: index * 0.4 }}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.3
+              }}
               className="w-full"
             >
               <ProjectCard
